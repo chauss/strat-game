@@ -13,23 +13,30 @@ class Field():
         '''
         sets up a new field and initializes it with "unoccupied"
         '''
-        self.__occupied = False
+        self.__token = None
         
-    def getOccupiedStatus(self):
+    def isOccupied(self):
         '''
-        returns the occupied state of the field
+        returns the occupiing token or None if the is no token
         '''
-        return self.__occupied
+        return self.__token
     
-    def moveTo(self):
+    def moveTo(self, token):
         '''
-        if the field is unoccupied, the field will be set occupied
-        if the field is already occupied an IllegalMoveException is raised
+        if the field is unoccupied, the field save the coming token
+        if the field is already occupied an IllegalMoveError is raised
         '''
-        if not self.__occupied:
-            self.__occupied = True
+        if self.__token == None:
+            self.__token = token
         else:
             raise IllegalMoveError(self)
+    
+    def leave(self):
+        '''
+        this will del the token who occupied the field
+        if no token occupied the field nothing happens
+        '''
+        self.__token = None
         
     def __str__(self):
         return "%d" % id(self)

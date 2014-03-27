@@ -17,4 +17,4 @@ class IllegalMoveError(Exception):
         self.occupiedField = field
         
     def __str__(self):
-        return "Field is occupied: %s" % self.occupiedField
+        return "Field is occupied: field_id=%s" % self.occupiedField
