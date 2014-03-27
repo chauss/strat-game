@@ -47,3 +47,6 @@ class Token():
         from True to False or from False to True
         '''
         self.__revealed = not self.__revealed
+        
+    def __str__(self):
+        return "Token: rank=%d, id=%d" % (self.__rank, id(self))
