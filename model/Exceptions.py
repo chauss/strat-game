@@ -11,3 +11,10 @@ class InvalidRankError(Exception):
     def __str__(self):
         import Token
         return "Rank %d is not within %d and %d" % (self.invalidRank, Token.MIN_RANK, Token.MAX_RANK)
+    
+class IllegalMoveError(Exception):
+    def __init__(self, field):
+        self.occupiedField = field
+        
+    def __str__(self):
+        return "Field is occupied: %s" % self.occupiedField
