@@ -10,8 +10,8 @@ MAX_RANK = 5
 class Token():
     def __init__(self, rank, revealed=True):
         '''
-        Initialices a new token with the given rank
-        and sets the reavealed status to revealed (Default = True)
+        Initializes a new token with the given rank
+        and sets the revealed status to revealed (Default = True)
         '''
         self.__rank = rank
         self.__revealed = revealed
