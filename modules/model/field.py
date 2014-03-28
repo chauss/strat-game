@@ -3,8 +3,11 @@ Created on 27.03.2014
 
 @author: Chris
 '''
-from modules2.model2.myExceptions import IllegalMoveError
 import logging.config
+
+from modules.model.myExceptions import IllegalMoveError
+
+
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
@@ -21,7 +24,7 @@ class Field():
         
     def isOccupied(self):
         '''
-        returns the occupiing token or None if there is no token
+        returns the occupying token or None if there is no token
         '''
         return self.__token
     

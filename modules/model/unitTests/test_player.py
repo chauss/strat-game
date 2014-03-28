@@ -4,7 +4,9 @@ Created on 28.03.2014
 @author: Chris
 '''
 import unittest
+
 import model.player as player
+
 
 class PlayerTest(unittest.TestCase):
     

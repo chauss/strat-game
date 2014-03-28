@@ -4,9 +4,11 @@ Created on 27.03.2014
 @author: Chris
 '''
 import unittest
-import token as token
+
+from modules.model.myExceptions import InvalidRankError
 import model.player as player
-from model.myExceptions import InvalidRankError
+import token as token
+
 
 class TokenTest(unittest.TestCase):
     

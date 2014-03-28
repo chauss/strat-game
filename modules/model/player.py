@@ -4,6 +4,8 @@ Created on 28.03.2014
 @author: Chris
 '''
 import logging.config
+
+
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 

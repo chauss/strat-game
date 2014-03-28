@@ -9,7 +9,7 @@ class InvalidRankError(Exception):
         self.invalidRank = invalidRank
         
     def __str__(self):
-        from model import token
+        from model.token import token
         return "Rank %d is not within %d and %d" % (self.invalidRank, token.MIN_RANK, token.MAX_RANK)
     
 class IllegalMoveError(Exception):

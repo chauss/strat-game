@@ -3,8 +3,11 @@ Created on 26.03.2014
 
 @author: Chris
 '''
-from myExceptions import InvalidRankError
 import logging.config
+
+from myExceptions import InvalidRankError
+
+
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 MIN_RANK = 1
