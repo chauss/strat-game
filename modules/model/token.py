@@ -5,7 +5,7 @@ Created on 26.03.2014
 '''
 from myExceptions import InvalidRankError
 import logging.config
-logging.config.fileConfig('..\\..\\config\\log.config')
+logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 MIN_RANK = 1
 MAX_RANK = 5
