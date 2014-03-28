@@ -17,10 +17,11 @@ class Field():
         sets up a new field and initializes it with "unoccupied"
         '''
         self.__token = None
+        logger.debug('Created new field with id=%d' % id(self))
         
     def isOccupied(self):
         '''
-        returns the occupiing token or None if the is no token
+        returns the occupiing token or None if there is no token
         '''
         return self.__token
     
@@ -29,9 +30,12 @@ class Field():
         if the field is unoccupied, the field save the coming token
         if the field is already occupied an IllegalMoveError is raised
         '''
+        logger.debug("Token(id=%d) moved successfully to field(id=%d)" % (id(token), id(self)))
         if self.__token == None:
             self.__token = token
+            logger.debug("Token(id=%d) moved successfully to field(id=%d)" % (id(token), id(self)))
         else:
+            logger.debug("Token(id=%d) could not moveTo field(id=%d), raising IllegalMoveError" % (id(token), id(self)))
             raise IllegalMoveError(self)
     
     def leave(self):
@@ -39,6 +43,7 @@ class Field():
         this will del the token who occupied the field
         if no token occupied the field nothing happens
         '''
+        logger.debug("Leaving field(id=%d)" % id(self))
         self.__token = None
         
     def __str__(self):
