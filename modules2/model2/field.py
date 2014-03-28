@@ -3,7 +3,7 @@ Created on 27.03.2014
 
 @author: Chris
 '''
-from myExceptions import IllegalMoveError
+from modules2.model2.myExceptions import IllegalMoveError
 import logging.config
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')

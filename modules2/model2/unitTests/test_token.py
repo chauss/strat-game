@@ -4,7 +4,7 @@ Created on 27.03.2014
 @author: Chris
 '''
 import unittest
-import model.token as token
+import token as token
 import model.player as player
 from model.myExceptions import InvalidRankError
 
