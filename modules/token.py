@@ -3,7 +3,10 @@ Created on 26.03.2014
 
 @author: Chris
 '''
-from Exceptions import InvalidRankError
+from modules.myExceptions import InvalidRankError
+import logging.config
+logging.config.fileConfig('..\\config\\log.config')
+logger = logging.getLogger('model')
 MIN_RANK = 1
 MAX_RANK = 5
 

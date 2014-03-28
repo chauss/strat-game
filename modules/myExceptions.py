@@ -9,8 +9,8 @@ class InvalidRankError(Exception):
         self.invalidRank = invalidRank
         
     def __str__(self):
-        import Token
-        return "Rank %d is not within %d and %d" % (self.invalidRank, Token.MIN_RANK, Token.MAX_RANK)
+        import token
+        return "Rank %d is not within %d and %d" % (self.invalidRank, token.MIN_RANK, token.MAX_RANK)
     
 class IllegalMoveError(Exception):
     def __init__(self, field):

@@ -3,7 +3,10 @@ Created on 27.03.2014
 
 @author: Chris
 '''
-from Exceptions import IllegalMoveError
+from modules.myExceptions import IllegalMoveError
+import logging.config
+logging.config.fileConfig('..\\config\\log.config')
+logger = logging.getLogger('model')
 
 class Field():
     '''
