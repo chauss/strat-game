@@ -5,10 +5,10 @@ Created on 27.03.2014
 '''
 
 import unittest
-import field
-import token
-import player
-from modules.myExceptions import IllegalMoveError
+import model.field as field
+import model.token as token
+import model.player as player
+from model.myExceptions import IllegalMoveError
 
 class FieldTest(unittest.TestCase):
     def testCreateField(self):

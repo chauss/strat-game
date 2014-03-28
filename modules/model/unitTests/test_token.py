@@ -4,9 +4,9 @@ Created on 27.03.2014
 @author: Chris
 '''
 import unittest
-import token
-import player
-from modules.myExceptions import InvalidRankError
+import model.token as token
+import model.player as player
+from model.myExceptions import InvalidRankError
 
 class TokenTest(unittest.TestCase):
     

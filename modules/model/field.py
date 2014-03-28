@@ -3,9 +3,9 @@ Created on 27.03.2014
 
 @author: Chris
 '''
-from modules.myExceptions import IllegalMoveError
+from myExceptions import IllegalMoveError
 import logging.config
-logging.config.fileConfig('..\\config\\log.config')
+logging.config.fileConfig('..\\..\\config\\log.config')
 logger = logging.getLogger('model')
 
 class Field():

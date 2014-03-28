@@ -4,7 +4,7 @@ Created on 28.03.2014
 @author: Chris
 '''
 import logging.config
-logging.config.fileConfig('..\\config\\log.config')
+logging.config.fileConfig('..\\..\\config\\log.config')
 logger = logging.getLogger('model')
 
 class Player():
