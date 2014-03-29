@@ -6,10 +6,10 @@ Created on 27.03.2014
 
 import unittest
 
-import field
-from model.myExceptions import IllegalMoveError
-import model.player as player
-import model.token as token
+from .. import field 
+from ..myExceptions import IllegalMoveError
+from .. import player
+from .. import token
 
 
 class FieldTest(unittest.TestCase):

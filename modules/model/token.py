@@ -5,7 +5,7 @@ Created on 26.03.2014
 '''
 import logging.config
 
-from myExceptions import InvalidRankError
+from .myExceptions import InvalidRankError
 
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

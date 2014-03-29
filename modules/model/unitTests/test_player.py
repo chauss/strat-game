@@ -5,7 +5,7 @@ Created on 28.03.2014
 '''
 import unittest
 
-import model.player as player
+from .. import player
 
 
 class PlayerTest(unittest.TestCase):

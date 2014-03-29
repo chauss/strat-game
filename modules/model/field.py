@@ -5,7 +5,7 @@ Created on 27.03.2014
 '''
 import logging.config
 
-from modules.model.myExceptions import IllegalMoveError
+from .myExceptions import IllegalMoveError
 
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
@@ -33,7 +33,6 @@ class Field():
         if the field is unoccupied, the field save the coming token
         if the field is already occupied an IllegalMoveError is raised
         '''
-        logger.debug("Token(id=%d) moved successfully to field(id=%d)" % (id(token), id(self)))
         if self.__token == None:
             self.__token = token
             logger.debug("Token(id=%d) moved successfully to field(id=%d)" % (id(token), id(self)))
