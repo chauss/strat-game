@@ -6,11 +6,12 @@ Created on 29.03.2014
 import logging.config
 from . import field
 from .myExceptions import PlayingFieldError
+from ..util import ObserverPattern.Subject as Subject
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
-class PlayingField():
+class PlayingField(Subject):
     def __init__(self, height, width):
         '''
         creates a new PlayingField object and sets its height and width
@@ -41,6 +42,7 @@ class PlayingField():
         '''
         if self.__build:
             self.__playingField[x][y].moveTo(token)
+            self.notify()
         else:
             raise PlayingFieldError(self, "Need to run build() first")    
                 
