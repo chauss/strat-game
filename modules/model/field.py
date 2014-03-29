@@ -22,7 +22,7 @@ class Field():
         self.__token = None
         logger.debug('Created new field with id=%d' % id(self))
         
-    def isOccupied(self):
+    def getOccupyingToken(self):
         '''
         returns the occupying token or None if there is no token
         '''
