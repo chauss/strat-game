@@ -32,7 +32,7 @@ class Token():
         or raises an InvalidRankException
         '''
         if(newRank < MIN_RANK or newRank > MAX_RANK):
-            logger.debug("Tried to set tokens(id=%d) to invalid rank=%d, raising InvalidRankError" % (id(self), newRank))
+            logger.debug("Tried to set token(id=%d) to invalid rank=%d, raising InvalidRankError" % (id(self), newRank))
             raise InvalidRankError(newRank)
         else:
             logger.debug("Set tokens(id=%d) rank to %d" % (id(self), newRank))
