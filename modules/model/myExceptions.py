@@ -18,3 +18,11 @@ class IllegalMoveError(Exception):
         
     def __str__(self):
         return "Field is occupied: field_id=%s" % self.occupiedField
+    
+class PlayingFieldError(Exception):
+    def __init__(self, pf, msg):
+        self.pf = pf
+        self.message = msg
+        
+    def __str__(self):
+        return "PlayingField(id=%d): %s" % (self.pf, self.msg)
