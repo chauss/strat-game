@@ -3,7 +3,7 @@ Created on 29.03.2014
 
 @author: Chris
 '''
-class Subject():
+class Subject(object):
     def __init__(self):
         self._observers = []
 

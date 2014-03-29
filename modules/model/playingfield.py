@@ -6,16 +6,17 @@ Created on 29.03.2014
 import logging.config
 from . import field
 from .myExceptions import PlayingFieldError
-from ..util import ObserverPattern.Subject as Subject
+import modules.util.ObserverPattern as ObserverPattern
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
-class PlayingField(Subject):
+class PlayingField(ObserverPattern.Subject):
     def __init__(self, height, width):
         '''
         creates a new PlayingField object and sets its height and width
         '''
+        super(PlayingField, self).__init__()
         self.__height = height
         self.__width = width
         self.__build = False
