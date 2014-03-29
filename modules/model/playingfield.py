@@ -46,8 +46,12 @@ class PlayingField():
                 
     def __str__(self):
         if self.__build:
-            string = ""
+            string = "   "
+            for y in range(self.__width):
+                string += "   %d   " % y
+            string += "\n"
             for x in range(self.__height):
+                string += "%d  " % x
                 for y in range (self.__width):
                     string += "["
                     occToken = self.__playingField[x][y].getOccupyingToken()
