@@ -11,7 +11,7 @@ logger = logging.getLogger('model')
 class Movement():
     '''
     this class provides methods for a proper movement
-    on the playingfield
+    on a playingfield
     '''
     def __init__(self, playingfield):
         '''
