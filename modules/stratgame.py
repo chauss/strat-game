@@ -4,7 +4,7 @@ Created on 29.03.2014
 @author: Chris
 '''
 import aview.TextualUserInterface as TextualUserInterface
-import model.playingfield as playingfield
+import modules.controller.playingfield as playingfield
 import model.token as token
 import model.player as player
 

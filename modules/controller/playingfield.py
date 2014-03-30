@@ -4,8 +4,8 @@ Created on 29.03.2014
 @author: Chris
 '''
 import logging.config
-from . import field
-from .myExceptions import PlayingFieldError
+from modules.model import field
+from modules.model.myExceptions import PlayingFieldError
 import modules.util.ObserverPattern as ObserverPattern
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
