@@ -20,4 +20,4 @@ class Subject(object):
     def notify(self, modifier=None):
         for observer in self._observers:
             if modifier != observer:
-                observer.update(self)
+                observer.update()

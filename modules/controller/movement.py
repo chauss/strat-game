@@ -6,7 +6,7 @@ Created on 29.03.2014
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('controller')
 
 class Movement():
     '''

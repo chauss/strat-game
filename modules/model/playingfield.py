@@ -11,16 +11,26 @@ import modules.util.ObserverPattern as ObserverPattern
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
+PLAYERS_PLAYING = 2
+
 class PlayingField(ObserverPattern.Subject):
-    def __init__(self, height, width):
+    def __init__(self, height, width, tokensPerPlayer):
         '''
-        creates a new PlayingField object and sets its height and width
+        creates a new PlayingField object and sets its height, width
+        and the number of tokens for each player on this playingfield
         '''
-        super(PlayingField, self).__init__()
-        self.__height = height
-        self.__width = width
-        self.__build = False
-        logger.debug("Created a new PlayingField(id=%d)" % id(self))
+        tokensInGame = PLAYERS_PLAYING*tokensPerPlayer
+        fieldsInGame = height*width
+        if tokensInGame <= fieldsInGame:
+            super(PlayingField, self).__init__()
+            self.__height = height
+            self.__width = width
+            self.__tokensPerPlayer = tokensPerPlayer
+            self.__build = False
+            logger.debug("Created a new PlayingField(id=%d): %dX%d with %d tokens per player" % (id(self), height, width, tokensPerPlayer))
+        else:
+            logger.debug("Tried to initialize a playingfield with %d tokens and %d fields" % (tokensInGame, fieldsInGame))
+            raise ValueError("Can't initialze a playingfield with more tokens than fields")
         
     def build(self):
         '''
@@ -43,8 +53,10 @@ class PlayingField(ObserverPattern.Subject):
         '''
         if self.__build:
             self.__playingField[x][y].moveTo(token)
+            logger.debug("Placed token(id=%d) on PlayingField (%d/%d)" % (id(token), x, y))
             self.notify()
         else:
+            logger.debug("Tried to place token(id=%d) on not builded Playingfield(id=%d) on (%d/%d)" % (id(token), id(self), x, y))
             raise PlayingFieldError(self, "Need to run build() first")    
                 
     def __str__(self):

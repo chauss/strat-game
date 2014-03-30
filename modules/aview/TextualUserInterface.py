@@ -11,11 +11,15 @@ logger = logging.getLogger('tui')
 class Tui(object):
     def __init__(self, playingfield):
         self.__playingfield = playingfield
-        self.__playingfield.build()
         self._print()
         
     def update(self):
         self._print()
         
     def _print(self):
+        logger.info(80*">")
         logger.info("%s" % str(self.__playingfield))
+        logger.info(80*"<")
+        
+    def _buildPlayerList(self):
+        pass
