@@ -5,7 +5,6 @@ Created on 28.03.2014
 '''
 import logging.config
 
-
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
@@ -17,6 +16,7 @@ class Player():
         '''
         self.__name = name
         self.__index = index
+        self.__startingArea = []
         logger.debug("Created new player with name=%s" % name)
         
     def getName(self):

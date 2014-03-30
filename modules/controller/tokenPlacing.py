@@ -17,4 +17,3 @@ class TokenPlacing(ObserverPattern.Subject):
     def __init__(self, playingField):
         self.__playingField = playingField
         
-    def 

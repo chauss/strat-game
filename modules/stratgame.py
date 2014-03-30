@@ -5,16 +5,22 @@ Created on 29.03.2014
 '''
 import aview.TextualUserInterface as TextualUserInterface
 import modules.controller.playingfield as playingfield
-import model.token as token
-import model.player as player
+import model.token.Token as Token
+import model.player.Player as Player
 
 def main():
-    pf = playingfield.PlayingField(10, 10)
+    p1name = raw_input("Please enter the name of the first player: ")
+    p2name = raw_input("Please enter the name of the second player: ")
+    
+    p1 = Player(p1name, 1)
+    p2 = Player(p2name, 2)
+    
+    pf = playingfield.PlayingField(10, 5, 15)
     pf.build()
     tui = TextualUserInterface.Tui(pf)
     pf.attach(tui)
-    p = player.Player("Chris", 1)
-    t = token.Token(3, p)
+    p = Player("Chris", 1)
+    t = Token(3, p)
     pf.placeToken(t, 3, 3)
     
     

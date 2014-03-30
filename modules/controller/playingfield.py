@@ -9,7 +9,7 @@ from modules.model.myExceptions import PlayingFieldError
 import modules.util.ObserverPattern as ObserverPattern
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('controller')
 
 PLAYERS_PLAYING = 2
 
@@ -27,6 +27,8 @@ class PlayingField(ObserverPattern.Subject):
             self.__width = width
             self.__tokensPerPlayer = tokensPerPlayer
             self.__build = False
+            self.__hasPlayerOne = False
+            self.__hasPlayerTwo = False
             logger.debug("Created a new PlayingField(id=%d): %dX%d with %d tokens per player" % (id(self), height, width, tokensPerPlayer))
         else:
             logger.debug("Tried to initialize a playingfield with %d tokens and %d fields" % (tokensInGame, fieldsInGame))
