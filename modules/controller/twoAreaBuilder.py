@@ -18,7 +18,7 @@ class AreaBuilder(object):
         self.__gameData = gameData
         logger.debug("Created a new AreaBuilder(id=%d)" % id(self))
         
-    def buildTopStartArea(self, limit=False):
+    def buildTopStartArea(self):
         '''
         builds the start area for the top of the field
         and saves it to the gameData
@@ -37,7 +37,7 @@ class AreaBuilder(object):
             logger.debug("Builded the top area with limit=%d" % self.__gameData.AreaLanesLimit())
         self.__gameData.setTopArea(topArea)
     
-    def buildBottomStartArea(self, limit=False):
+    def buildBottomStartArea(self):
         '''
         builds the start area for the bottom of the field
         and saves it to gameData
