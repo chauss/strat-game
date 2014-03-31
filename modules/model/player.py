@@ -16,7 +16,6 @@ class Player():
         '''
         self.__name = name
         self.__index = index
-        self.__startArea = None
         logger.debug("Created new player with name=%s" % name)
         
     def getName(self):

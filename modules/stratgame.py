@@ -17,6 +17,9 @@ def main():
     
     pf = playingfield.PlayingField(10, 5, 15)
     pf.build()
+    p1Top = pf.buildTopStartArea()
+    p2Bot = pf.buildBottomStartArea()
+    
     tui = TextualUserInterface.Tui(pf)
     pf.attach(tui)
     p = Player("Chris", 1)

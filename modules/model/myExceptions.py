@@ -26,3 +26,10 @@ class PlayingFieldError(Exception):
         
     def __str__(self):
         return "PlayingField(id=%d): %s" % (self.pf, self.msg)
+    
+class DataNotSetError(Exception):
+    def __init__(self, msg):
+        self.message = msg
+        
+    def __str__(self):
+        return "Need to set the data first: %s" % self.msg
