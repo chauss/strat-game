@@ -7,6 +7,7 @@ import logging.config
 from modules.model import field
 from modules.model.myExceptions import PlayingFieldError
 import modules.util.ObserverPattern as ObserverPattern
+from modules.model.area import Area
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
@@ -19,20 +20,19 @@ class PlayingField(ObserverPattern.Subject):
         creates a new PlayingField object and sets its height, width
         and the number of tokens for each player on this playingfield
         '''
-        tokensInGame = PLAYERS_PLAYING*tokensPerPlayer
-        fieldsInGame = height*width
-        if tokensInGame <= fieldsInGame:
+        lanesPerPlayer = height / PLAYERS_PLAYING
+        fieldsPerPlayer = lanesPerPlayer * width
+        
+        if fieldsPerPlayer >= tokensPerPlayer:
             super(PlayingField, self).__init__()
             self.__height = height
             self.__width = width
             self.__tokensPerPlayer = tokensPerPlayer
             self.__build = False
-            self.__hasPlayerOne = False
-            self.__hasPlayerTwo = False
             logger.debug("Created a new PlayingField(id=%d): %dX%d with %d tokens per player" % (id(self), height, width, tokensPerPlayer))
         else:
-            logger.debug("Tried to initialize a playingfield with %d tokens and %d fields" % (tokensInGame, fieldsInGame))
-            raise ValueError("Can't initialze a playingfield with more tokens than fields")
+            logger.debug("Tried to initialize a playingfield: %dX%d with %d tokens per player but only %d fields per player" % (height, width, tokensPerPlayer, fieldsPerPlayer))
+            raise ValueError("Not enough fields for that amount of tokens")
         
     def build(self):
         '''
@@ -59,7 +59,70 @@ class PlayingField(ObserverPattern.Subject):
             self.notify()
         else:
             logger.debug("Tried to place token(id=%d) on not builded Playingfield(id=%d) on (%d/%d)" % (id(token), id(self), x, y))
-            raise PlayingFieldError(self, "Need to run build() first")    
+            raise PlayingFieldError(self, "Need to run build() first")
+        
+    def buildTopStartArea(self, limit=False):
+        '''
+        builds the start area for the top of the field
+        and returns it
+        limit can be used to limit the area to less
+        rows than the half of the game (if used must be an int)
+        '''
+        if not self.__build:
+            logger.debug("Tried to build top area before building playingfield(id=%d)" % id(self))
+            raise PlayingFieldError(self, "Need to run build() before building top area")
+        
+        topArea = Area()
+        if not limit:
+            lanes = self.__height / PLAYERS_PLAYING
+            for x in range(lanes):
+                for y in range(len(self.__playingField[x])):
+                    topArea.addFieldCoords(x, y)
+            logger.debug("Builded the top area for playingfield(id=%d) without limit" % id(self))
+        else:
+            if (limit * self.__width) < self.__tokensPerPlayer:
+                logger.debug("Tried to build top area for playingfield(id=%d) with too small limit=%d" % (id(self), limit))
+                raise ValueError("The limit is to hard for the game conditions")
+            else:
+                for x in range(limit):
+                    for y in range(len(self.__playingField[x])):
+                        topArea.addFieldCoords(x, y)
+            logger.debug("Builded the top area for playingfield(id=%d) with limit=%d" % (id(self), limit))
+        return topArea
+    
+    def buildBottomStartArea(self, limit=False):
+        '''
+        builds the start area for the bottom of the field
+        and returns it
+        limit can be used to limit the area to less
+        rows than the half of the game (if used must be an int)
+        '''
+        if not self.__build:
+            logger.debug("Tried to build bot area before building playingfield(id=%d)" % id(self))
+            raise PlayingFieldError(self, "Need to run build() before building bot area")
+        
+        bottomArea = Area()
+        if not limit:
+            lanes = self.__height / PLAYERS_PLAYING
+            start = self.__height - lanes
+            end = self.__height
+            for x in range(start, end):
+                for y in range(len(self.__playingField[x])):
+                    bottomArea.addFieldCoords(x, y)
+            logger.debug("Builded the top area for playingfield(id=%d) without limit" % id(self))
+        else:
+            if (limit * self.__width) < self.__tokensPerPlayer:
+                logger.debug("Tried to build bottom area for playingfield(id=%d) with too small limit=%d" % (id(self), limit))
+                raise ValueError("The limit is to hard for the game conditions")
+            else:
+                lanes = self.__height / PLAYERS_PLAYING
+                start = self.__height - limit
+                end = self.__height
+                for x in range(start, end):
+                    for y in range(len(self.__playingField[x])):
+                        bottomArea.addFieldCoords(x, y)
+                logger.debug("Builded the bottom area for playingfield(id=%d) with limit=%d" % (id(self), limit))
+        return bottomArea
                 
     def __str__(self):
         if self.__build:

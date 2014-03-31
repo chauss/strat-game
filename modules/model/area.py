@@ -45,4 +45,10 @@ class Area(object):
         logger.debug("Checking if coords (%d/%d) are in area(id=%d): False" % (x, y, id(self)))
         return False
     
+    def __str__(self):
+        string = ""
+        for x in self.__area:
+            string += "(%d/%d)\n" % x
+        return string
+    
     
