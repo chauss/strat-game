@@ -76,8 +76,11 @@ class PlayingField(ObserverPattern.Subject):
                         string += 5*"-"
                     else:
                         playerID = occToken.getOwner().getIndex()
-                        tokenRank = occToken.getRank()
-                        string += "P%d(%d)" % (playerID, tokenRank)
+                        if occToken.getVisibility():
+                            tokenRank = occToken.getRank()
+                            string += "P%d(%d)" % (playerID, tokenRank)
+                        else:
+                            string += "P%d(?)" % playerID
                     string += "]"
                 string += "\n"
         else:

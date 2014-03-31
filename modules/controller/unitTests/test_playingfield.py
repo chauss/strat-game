@@ -6,7 +6,7 @@ Created on 29.03.2014
 import unittest
 
 from modules.controller import playingfield
-from modules.model import token
+from modules.model.token import Token
 from modules.model import player
 from modules.model.myExceptions import IllegalMoveError
 
@@ -21,8 +21,10 @@ class PlayingFieldTest(unittest.TestCase):
         pf = playingfield.PlayingField(5, 5, 12)
         pf.build()
         p = player.Player("TestPlayer", 1)
-        t = token.Token(4, p)
+        t = Token(4, p)
+        t2 = Token(5, p, False)
         pf.placeToken(t, 3, 3)
+        pf.placeToken(t2, 0, 0)
         self.assertRaises(IllegalMoveError, pf.placeToken, t, 3, 3)
         print str(pf)
     
