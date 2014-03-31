@@ -17,7 +17,7 @@ class GameData(object):
     that is needed for one game
     '''
     def __init__(self):
-        self.__playercount = 2
+        self.__playerCount = 2
         self.__fieldHeight = 0
         self.__fieldWidth = 0
         self.__tokensPerPlayer = 0
