@@ -94,4 +94,5 @@ class PlayingField(ObserverPattern.Subject):
                         string += "P%d(?)" % playerID
                 string += "]"
             string += "\n"
+        return string
                 

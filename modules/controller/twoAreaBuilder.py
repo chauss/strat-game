@@ -5,16 +5,12 @@ Created on 31.03.2014
 '''
 from modules.model.area import Area
 import logging.config
-import modules.model.gameDataTwoPlayer as gameDataTwoPlayer
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
 
 class AreaBuilder(object):
     def __init__(self, gameData):
-        if not isinstance(gameData, gameDataTwoPlayer):
-            raise ValueError("Need an instance of gameData for two players")
-        
         self.__gameData = gameData
         logger.debug("Created a new AreaBuilder(id=%d)" % id(self))
         
@@ -32,7 +28,7 @@ class AreaBuilder(object):
             logger.debug("Builded the top area without limit")
         else:
             for x in range(self.__gameData.AreaLanesLimit()):
-                for y in range(self.__gameData.fieldWidth):
+                for y in range(self.__gameData.fieldWidth()):
                     topArea.addFieldCoords(x, y)
             logger.debug("Builded the top area with limit=%d" % self.__gameData.AreaLanesLimit())
         self.__gameData.setTopArea(topArea)
@@ -52,9 +48,9 @@ class AreaBuilder(object):
                     bottomArea.addFieldCoords(x, y)
             logger.debug("Builded the bottom area without limit")
         else:
-            lanes = self.__height / self.__gameData.playerCount()
-            start = self.__height - limit
-            end = self.__height
+            lanes = self.__gameData.fieldHeight() / self.__gameData.playerCount()
+            start = self.__gameData.fieldHeight() - self.__gameData.AreaLanesLimit()
+            end = self.__gameData.fieldHeight()
             for x in range(start, end):
                 for y in range(self.__gameData.fieldWidth()):
                     bottomArea.addFieldCoords(x, y)

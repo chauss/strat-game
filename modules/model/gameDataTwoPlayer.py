@@ -59,10 +59,7 @@ class GameData(object):
         '''
         sets the first player: must differ from second player
         '''
-        if not isinstance(player, Player):
-            logger.debug("Tried to set a player who is not an instance of Player")
-            raise ValueError("player must be an instance of Player")
-        elif self.__playerTwo:
+        if self.__playerTwo:
             if player.getIndex() == self.__playerTwo.getIndex():
                 logger.debug("Tried to set PlayerOne with the same index as PlayerTwo")
                 raise ValueError("PlayerOne must have a index that differs from PlayerTwo's index")
@@ -72,10 +69,7 @@ class GameData(object):
         '''
         sets the second player: must differ from first player
         '''
-        if not isinstance(player, Player):
-            logger.debug("Tried to set a player who is not an instance of Player")
-            raise ValueError("player must be an instance of Player")
-        elif self.__playerOne:
+        if self.__playerOne:
             if player.getIndex() == self.__playerOne.getIndex():
                 logger.debug("Tried to set PlayerTwo with the same index as PlayerOne")
                 raise ValueError("PlayerTwo must have a index that differs from PlayerOne's index")
