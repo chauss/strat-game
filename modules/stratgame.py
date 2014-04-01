@@ -8,6 +8,8 @@ import modules.controller.playingfield as playingfield
 from model.player import Player
 from model.gameDataTwoPlayer import GameData
 from controller.gameDataFiller import defaultGameDataTwoPlayer
+from controller.tokenSetBuilder import buildDefaultTokenSet
+from controller.tokenPlacing import TokenPlacing
 
 def main():
     gameData = GameData()
@@ -21,9 +23,13 @@ def main():
     
     pf = playingfield.PlayingField(gameData)
 
-    
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
+
+    tokenSet = buildDefaultTokenSet(gameData)
+    tp = TokenPlacing(pf, tokenSet, gameData)
+        
+    
     
 
     
