@@ -54,8 +54,10 @@ class TokenPlacing(ObserverPattern.Subject):
             occToken = self.__playingField.getTokenOnField(x, y)
             if occToken:
                 tui.info("There is already a token on this field: (%d/%d)" % (x, y))
+                continue
             self.__playingField.placeToken(token, x, y)
             player.addTokenOnField(token)
+            tokenPlaced = True
         
     def _getValidCoordsFromPlayer(self, player, rank):
         '''
@@ -73,7 +75,7 @@ class TokenPlacing(ObserverPattern.Subject):
             x = self._getValueFromUserToPlace("x", rank, self.__gameData.fieldHeight)
             y = self._getValueFromUserToPlace("y", rank, self.__gameData.fieldWidth)
             
-            if not (x, y) in area:
+            if not area.isFieldInArea(x, y):
                 tui.info("The given coords are not in your start area: (%d/%d)" % (x, y))
                 continue
             gotLegalCoords = True

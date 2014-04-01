@@ -28,7 +28,7 @@ def main():
 
     tokenSet = buildDefaultTokenSet(gameData)
     tp = TokenPlacing(pf, tokenSet, gameData)
-        
+    tp.start()
     
     
 
