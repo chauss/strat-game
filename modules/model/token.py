@@ -8,8 +8,8 @@ from .myExceptions import InvalidRankError
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
-MIN_RANK = 1
-MAX_RANK = 5
+MIN_RANK = 0
+MAX_RANK = 4
 
 class Token():
     def __init__(self, rank, owner, revealed=True):

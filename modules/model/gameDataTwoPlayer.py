@@ -26,6 +26,7 @@ class GameData(object):
         self.__topArea = None
         self.__bottomArea = None
         self.__AreaLanesLimit = 0
+        self.__activePlayer = None
         
     '''Setters for the gameData >>>>>>>>>>>'''
     def setFieldHeight(self, height):
@@ -102,6 +103,13 @@ class GameData(object):
             logger.debug("Tried to set too small limit=%d" % limit)
             raise ValueError("The limit is to small for the game conditions")
         self.__AreaLanesLimit = limit
+        
+    def setActivePlayer(self, player):
+        '''
+        this sets the player whos turn it is right now
+        '''
+        self.__activePlayer = player
+        
     '''Getters for the gameData >>>>>>>>>>>'''
     def playerCount(self):
         '''
@@ -177,3 +185,9 @@ class GameData(object):
         returns the fieldHeight
         '''
         return self.__AreaLanesLimit
+    
+    def activePlayer(self):
+        '''
+        returns the player whos turn it is
+        '''
+        return self.__activePlayer

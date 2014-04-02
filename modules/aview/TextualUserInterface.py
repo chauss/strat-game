@@ -28,7 +28,13 @@ class Tui(object):
         pList = ""
         playerOne = self.__gameData.playerOne()
         playerTwo = self.__gameData.playerTwo()
-        pList += "P%d: %s\n" % (playerOne.getIndex(), playerOne.getName())
-        pList += "P%d: %s\n" % (playerTwo.getIndex(), playerTwo.getName())
+        activePlayer = self.__gameData.activePlayer()
+        
+        if playerOne == activePlayer:
+            pList += "P%d: %s <<<<\n" % (playerOne.getIndex(), playerOne.getName())
+            pList += "P%d: %s\n" % (playerTwo.getIndex(), playerTwo.getName())
+        else:
+            pList += "P%d: %s\n" % (playerOne.getIndex(), playerOne.getName())
+            pList += "P%d: %s <<<<\n" % (playerTwo.getIndex(), playerTwo.getName())
         return pList
         

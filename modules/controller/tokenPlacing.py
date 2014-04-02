@@ -6,6 +6,7 @@ Created on 30.03.2014
 import logging.config
 from modules.model.token import Token
 import modules.util.ObserverPattern as ObserverPattern
+from modules.controller.fieldToString import TokenPlacingStartArea
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
@@ -24,15 +25,19 @@ class TokenPlacing(ObserverPattern.Subject):
     def start(self):
         self._runPlayerPlacing(self.__gameData.playerOne())
         
+        tpsa = TokenPlacingStartArea(self.__playingField, self.__gameData, self.__gameData.bottomArea())
+        self.__playingField.setToString(tpsa.toString())
+        self.__gameData.setActivePlayer(self.__gameData.playerTwo())
+        
         self._runPlayerPlacing(self.__gameData.playerTwo())
         
     def _runPlayerPlacing(self, player):
         placedAll = 0
         placedRank = 0
-        rank = 1
+        rank = 0
         
         while placedAll < self.__gameData.tokensPerPlayer():
-            if self.__tokenSet[rank-1] > placedRank:
+            if self.__tokenSet[rank] > placedRank:
                 token = Token(rank , player)
                 self._tryToSetToken(token, player, rank)
                 placedRank += 1
