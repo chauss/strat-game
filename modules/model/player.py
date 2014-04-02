@@ -37,6 +37,13 @@ class Player():
         '''
         self.__tokensOnField.append(token)
         
+    def getTokensOnField(self):
+        '''
+        returns a list of the tokens on field of this player
+        '''
+        return self.__tokensOnField
+        
+        
     def removeTokenOnField(self, token):
         '''
         removes a token of the player from the list of its
