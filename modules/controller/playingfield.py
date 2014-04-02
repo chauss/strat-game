@@ -7,6 +7,7 @@ import logging.config
 from modules.model import field
 from modules.model.myExceptions import PlayingFieldError
 import modules.util.ObserverPattern as ObserverPattern
+from modules.controller.fieldToString import *
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
@@ -27,6 +28,7 @@ class PlayingField(ObserverPattern.Subject):
             self.__tokensPerPlayer = gameData.tokensPerPlayer()
             self.__build = False
             self._build()
+            self.__toString = IFieldToString()
             logger.debug("Created a new PlayingField(id=%d): %dX%d with %d tokens per player" % (id(self), self.__height, self.__width, self.__tokensPerPlayer))
         else:
             logger.debug("Tried to initialize a playingfield: %dX%d with %d tokens per player but only %d fields per player" % (gameData.fieldHeight(), gameData.fieldWidth(), gameData.tokensPerPlayer(), fieldsPerPlayer))
@@ -73,26 +75,9 @@ class PlayingField(ObserverPattern.Subject):
             raise PlayingFieldError("Can not leave an empty field")
         self.__playingField[x][y].leave()
         
+    def setToString(self, toString):
+        self.__toString = toString
+        
     def __str__(self):
-        string = "   "
-        for y in range(self.__width):
-            string += "   %d   " % y
-        string += "\n"
-        for x in range(self.__height):
-            string += "%d  " % x
-            for y in range (self.__width):
-                string += "["
-                occToken = self.__playingField[x][y].getOccupyingToken()
-                if occToken == None:
-                    string += 5*"-"
-                else:
-                    playerID = occToken.getOwner().getIndex()
-                    if occToken.getVisibility():
-                        tokenRank = occToken.getRank()
-                        string += "P%d(%d)" % (playerID, tokenRank)
-                    else:
-                        string += "P%d(?)" % playerID
-                string += "]"
-            string += "\n"
-        return string
+        return self.__toString(self)
                 

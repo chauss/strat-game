@@ -50,7 +50,7 @@ class TokenPlacing(ObserverPattern.Subject):
         tokenPlaced = False
         
         while not tokenPlaced:
-            (x, y) = self._getValidCoordsFromPlayer(player, rank)
+            (x, y) = self._getValidCoords(player, rank)
             occToken = self.__playingField.getTokenOnField(x, y)
             if occToken:
                 tui.info("There is already a token on this field: (%d/%d)" % (x, y))
@@ -59,9 +59,13 @@ class TokenPlacing(ObserverPattern.Subject):
             player.addTokenOnField(token)
             tokenPlaced = True
         
-    def _getValidCoordsFromPlayer(self, player, rank):
+    def _getValidCoords(self, player, rank):
         '''
-        checks weather the given coords of the player are in his area
+        checks if the input coords from self._getValueFromUserToPlace
+        are in his area:
+        the top area is for the player with the index 1
+        the bottom area is for the player with the index 2
+        if the index of the player differs from that an valueError is raised
         '''
         if player.getIndex() == 1:
             area = self.__gameData.topArea()
@@ -90,7 +94,8 @@ class TokenPlacing(ObserverPattern.Subject):
         Set = False
         while not Set:
             try:
-                val = int(raw_input(tui.info("Please enter %s value for token of rank %d: " % (value, tokenRank))))
+                tui.info("Please enter %s value for token of rank %d: " % (value, tokenRank))
+                val = int(raw_input(">>>>"))
                 if val < 0 or val > maxValue:
                     raise
                 Set = True
