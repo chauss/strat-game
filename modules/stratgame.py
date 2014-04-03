@@ -10,7 +10,7 @@ from model.gameDataTwoPlayer import GameData
 from controller.gameDataFiller import defaultGameDataTwoPlayer
 from controller.tokenSetBuilder import buildDefaultTokenSet
 from controller.tokenPlacing import TokenPlacing
-from controller.fieldToString import TokenPlacingStartArea
+from controller.fieldToString import TokenPlacingTopArea
 
 def main():
     gameData = GameData()
@@ -26,7 +26,7 @@ def main():
 
     gameData.setActivePlayer(gameData.playerOne())
     
-    tpsa = TokenPlacingStartArea(pf, gameData, gameData.topArea())
+    tpsa = TokenPlacingTopArea(pf, gameData)
     pf.setToString(tpsa)
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
