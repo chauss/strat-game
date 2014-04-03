@@ -70,7 +70,7 @@ class TokenPlacing(ObserverPattern.Subject):
     def _getValidCoords(self, player, rank):
         '''
         checks if the input coords from self._getValueFromUserToPlace
-        are in his area:
+        are in his/her area:
         the top area is for the player with the index 1
         the bottom area is for the player with the index 2
         if the index of the player differs from that an valueError is raised
@@ -99,14 +99,14 @@ class TokenPlacing(ObserverPattern.Subject):
         asks the player for the <value> coord to place a token with
         rank tokenRank and returns the coords
         '''
-        Set = False
-        while not Set:
+        gotValue = False
+        while not gotValue:
             try:
                 tui.info("Please enter %s value for token of rank %d: " % (value, tokenRank))
                 val = int(raw_input(">>>>"))
                 if val < 0 or val > maxValue:
                     raise
-                Set = True
+                gotValue = True
             except:
                 tui.info("Please enter an int value between %d and %d" % (0, maxValue))
         logger.debug("Asked the user for %s coord and got %d" % (value, val))

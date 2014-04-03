@@ -19,3 +19,22 @@ class Movement():
         the movement should be done on
         '''
         self.__playingfield = playingfield
+        
+    def moveFromTo(self, oldX, oldY, newX, newY, player):
+        movingToken = self.__playingfield.getTokenOnField(oldX, oldY)
+        if not movingToken:
+            raise ValueError("There is no token on field %d/%d to move" % (oldX, oldY))
+                             
+        destiToken = self.__playingfield.getTokenOnField(newX, newY)
+        if destiToken:
+            if destiToken.getRank() > movingToken.getRank():
+                self.__playingfield.leaveField(oldX, oldY)
+                #TODO: 
+                return
+            else:
+                self.__playingfield.leaveField(newX, newY)
+                self.__playingfield.leaveField(oldX, oldY)
+                
+        self.__playingfield.placeToken(movingToken, newX, newY)
+                
+        
