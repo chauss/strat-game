@@ -27,7 +27,7 @@ def main():
     gameData.setActivePlayer(gameData.playerOne())
     
     tpsa = TokenPlacingStartArea(pf, gameData, gameData.topArea())
-    pf.setToString(tpsa.toString())
+    pf.setToString(tpsa)
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
 

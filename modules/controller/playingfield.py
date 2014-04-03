@@ -7,8 +7,7 @@ import logging.config
 from modules.model import field
 from modules.model.myExceptions import PlayingFieldError
 import modules.util.ObserverPattern as ObserverPattern
-from modules.controller.fieldToString import *
-import types
+from modules.controller.fieldToString import IFieldToString
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
@@ -77,8 +76,8 @@ class PlayingField(ObserverPattern.Subject):
         self.__playingField[x][y].leave()
         
     def setToString(self, toString):
-        self.__toString = types.MethodType(toString, self)
+        self.__toString = toString
         
     def __str__(self):
-        return self.__toString(self)
+        return self.__toString.toString()
                 

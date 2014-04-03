@@ -17,6 +17,7 @@ class PlayerOnesTurn(IFieldToString):
         self.__playingField = playingField
         self.__gameData = gameData
         self.__area = area
+        logger.debug("Created a new instance of PlayerOnesTurn-FieldPrinting")
     
     def toString(self):
         string = "   "
@@ -47,6 +48,7 @@ class PlayerTwosTurn(IFieldToString):
         self.__playingField = playingField
         self.__gameData = gameData
         self.__area = area
+        logger.debug("Created a new instance of PlayerTwosTurn-FieldPrinting")
         
     def toString(self):
         string = "   "
@@ -76,6 +78,7 @@ class TokenPlacingStartArea(IFieldToString):
         self.__playingField = playingField
         self.__gameData = gameData
         self.__area = area
+        logger.debug("Created a new instance of TokenPlacingStartArea-FieldPrinting")
     
     def toString(self):
         '''

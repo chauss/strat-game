@@ -25,9 +25,9 @@ class TokenPlacing(ObserverPattern.Subject):
         
     def start(self):
         self._runPlayerPlacing(self.__gameData.playerOne())
-        utils.changeTokenVisibility()
+        utils.changeTokenVisibility(self.__gameData.playerOne(), self.__gameData.playerTwo())
         tpsa = TokenPlacingStartArea(self.__playingField, self.__gameData, self.__gameData.bottomArea())
-        self.__playingField.setToString(tpsa.toString())
+        self.__playingField.setToString(tpsa)
         self.__gameData.setActivePlayer(self.__gameData.playerTwo())
         
         self._runPlayerPlacing(self.__gameData.playerTwo())
@@ -82,8 +82,8 @@ class TokenPlacing(ObserverPattern.Subject):
         
         gotLegalCoords = False
         while not gotLegalCoords:
-            x = self._getValueFromUserToPlace("x", rank, self.__gameData.fieldHeight)
-            y = self._getValueFromUserToPlace("y", rank, self.__gameData.fieldWidth)
+            x = self._getValueFromUserToPlace("x", rank, self.__gameData.fieldHeight())
+            y = self._getValueFromUserToPlace("y", rank, self.__gameData.fieldWidth())
             
             if not area.isFieldInArea(x, y):
                 tui.info("The given coords are not in your start area: (%d/%d)" % (x, y))
@@ -106,7 +106,7 @@ class TokenPlacing(ObserverPattern.Subject):
                     raise
                 Set = True
             except:
-                tui.logger("Please enter an int value between %d and %d" % (0, maxValue))
+                tui.info("Please enter an int value between %d and %d" % (0, maxValue))
         logger.debug("Asked the user for %s coord and got %d" % (value, val))
         return val
     
