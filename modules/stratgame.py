@@ -10,7 +10,8 @@ from model.gameDataTwoPlayer import GameData
 from controller.gameDataFiller import defaultGameDataTwoPlayer
 from controller.tokenSetBuilder import buildDefaultTokenSet
 from controller.tokenPlacing import TokenPlacing
-from controller.fieldToString import TokenPlacingTopArea
+from controller.movement import Movement
+from controller.consoleReader import ConsoleReader
 
 def main():
     gameData = GameData()
@@ -23,18 +24,16 @@ def main():
     gameData.setPlayerTwo(Player("Laura", 2))
     
     pf = playingfield.PlayingField(gameData)
-
-    gameData.setActivePlayer(gameData.playerOne())
     
-    tpsa = TokenPlacingTopArea(pf, gameData)
-    pf.setToString(tpsa)
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
 
     tokenSet = buildDefaultTokenSet(gameData)
     tp = TokenPlacing(pf, tokenSet, gameData)
-    tp.start()
-    
+
+    m = Movement(pf)
+    #new thread:
+    ConsoleReader(gameData, pf, tp, m)
     
 
     
