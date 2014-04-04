@@ -11,6 +11,10 @@ import logging.config
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('model')
 
+TOKEN_PLACING = 0
+TOKEN_MOVING = 1
+GAME_FINISHED = 2
+
 class GameData(object):
     '''
     this class is some kind of container for all the data
@@ -27,6 +31,7 @@ class GameData(object):
         self.__bottomArea = None
         self.__AreaLanesLimit = 0
         self.__activePlayer = None
+        self.__gameState = TOKEN_PLACING
         
     '''Setters for the gameData >>>>>>>>>>>'''
     def setFieldHeight(self, height):
@@ -110,6 +115,12 @@ class GameData(object):
         '''
         self.__activePlayer = player
         
+    def nextGameState(self):
+        '''
+        this increases the gamestate to the next state
+        '''
+        self.__gameState += 1
+        
     '''Getters for the gameData >>>>>>>>>>>'''
     def playerCount(self):
         '''
@@ -191,3 +202,9 @@ class GameData(object):
         returns the player whos turn it is
         '''
         return self.__activePlayer
+    
+    def gameState(self):
+        '''
+        returns the current gameState
+        '''
+        return self.__gameState
