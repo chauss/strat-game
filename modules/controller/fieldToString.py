@@ -23,7 +23,7 @@ class PlayerOnesTurn(IFieldToString):
         for y in range(self.__gameData.fieldWidth()):
             string += "   %d   " % y
         string += "\n"
-        for x in xrange(self.__gameData.fieldHeight()-1, -1, -1):
+        for x in range(self.__gameData.fieldHeight()-1, -1, -1):
             string += "%d  " % x
             for y in range (self.__gameData.fieldWidth()):
                 string += "["
@@ -86,7 +86,7 @@ class TokenPlacingTopArea(IFieldToString):
         for y in range(self.__gameData.fieldWidth()):
             string += "   %d   " % y
         string += "\n"
-        for x in xrange(self.__gameData.fieldHeight()-1, -1, -1):
+        for x in range(self.__gameData.fieldHeight()-1, -1, -1):
             string += "%d  " % x
             for y in range (self.__gameData.fieldWidth()):
                 string += "["

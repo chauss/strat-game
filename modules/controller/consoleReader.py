@@ -30,7 +30,7 @@ class ConsoleReader(object):
                 logger.debug("Shutting down ConsoleReader")
                 break
             
-            myInput = raw_input(">>>> ")
+            myInput = input(">>>> ")
             logger.debug("Read the input: %s" % myInput)
             if myInput[0] != '/':
                 tui.info("Commands begin with a \"/\"")
