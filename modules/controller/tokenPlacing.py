@@ -134,5 +134,6 @@ class TokenPlacing(ObserverPattern.Subject):
         else:
             logger.debug("Increasing gameState!")
             self.__gameData.nextGameState()
+            self.__playingField.notify()
         
     
