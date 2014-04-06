@@ -26,7 +26,7 @@ class ConsoleReader(object):
     def run(self):
         logger.debug("Starting ConsoleReader...")
         while True:
-            myInput = raw_input()
+            myInput = raw_input(">>>> ")
             logger.debug("Read the input: %s" % myInput)
             if myInput[0] != '/':
                 tui.info("Commands begin with a \"/\"")

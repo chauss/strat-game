@@ -20,10 +20,10 @@ class Tui(object):
         
     def _print(self):
         logger.info(80*">")
-        logger.info(self._buildPlayerList)
+        logger.info(self._buildPlayerList())
         logger.info("%s" % str(self.__playingfield))
         logger.info(80*"<")
-        logger.info(self._availableCommands)
+        logger.info(self._availableCommands())
         
     def _buildPlayerList(self):
         '''
@@ -50,19 +50,17 @@ class Tui(object):
         state of game
         '''
         commandString = ""
-        gameState = self.gameData.gameState()
+        gameState = self.__gameData.gameState()
         if gameState == TOKEN_PLACING:
             commandString += "Available commands:\n"
-            commandString += "/p or /place: <xCoord> <yCoord>\n"
+            commandString += "/p or /place: <xCoord> <yCoord>"
 
         elif gameState == TOKEN_MOVING:
             commandString += "Available commands:\n"
-            commandString += "/m or /move: <xCoordOld> <yCoordOld> <xCoordNew> <yCoordNew>\n"
-            commandString += ">>>> "
+            commandString += "/m or /move: <xCoordOld> <yCoordOld> <xCoordNew> <yCoordNew>"
 
         elif gameState == GAME_FINISHED:
-            commandString += "The game is finished\n"
-            commandString += ">>>> "
+            commandString += "The game is finished"
 
         return commandString
         
