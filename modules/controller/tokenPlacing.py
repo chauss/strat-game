@@ -39,7 +39,6 @@ class TokenPlacing(ObserverPattern.Subject):
         try:
             logger.debug("Enter While-loop check: tokenSet[currentRank(%d)](%d)  = placedOfRank(%d)" %(self.__currentRank, self.__tokenSet[self.__currentRank], self.__placedOfRank))
             while self.__tokenSet[self.__currentRank] == self.__placedOfRank:
-                logger.debug("In While-loop check: tokenSet[currentRank(%d)](%d)  = placedOfRank(%d)" %(self.__currentRank, self.__tokenSet[self.__currentRank], self.__placedOfRank))
                 self.__currentRank += 1
                 self.__placedOfRank = 0
                 logger.debug("increased currentRank to %d" % self.__currentRank)
