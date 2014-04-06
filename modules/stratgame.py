@@ -12,6 +12,7 @@ from controller.tokenSetBuilder import buildDefaultTokenSet
 from controller.tokenPlacing import TokenPlacing
 from controller.movement import Movement
 from controller.consoleReader import ConsoleReader
+from threading import Thread
 
 def main():
     gameData = GameData()
@@ -32,8 +33,11 @@ def main():
     tp = TokenPlacing(pf, tokenSet, gameData)
 
     m = Movement(pf)
-    #new thread:
-    ConsoleReader(gameData, pf, tp, m)
+    
+    cr = ConsoleReader(gameData, pf, tp, m)
+    cr_thread = Thread(target= cr.run())
+    cr_thread.setDaemon #if only Daemon-Threads are left the program shuts down
+    cr_thread.start()
     
 
     

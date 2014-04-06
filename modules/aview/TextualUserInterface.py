@@ -14,7 +14,6 @@ class Tui(object):
     def __init__(self, playingfield, gameData):
         self.__playingfield = playingfield
         self.__gameData = gameData
-        self._print()
         
     def update(self):
         self._print()
@@ -31,6 +30,7 @@ class Tui(object):
         builds a string that contains the players and marks
         the player who is on turn right now
         '''
+        logger.debug("Building PlayerList in GamesState: %d" % self.__gameData.gameState())
         pList = ""
         playerOne = self.__gameData.playerOne()
         playerTwo = self.__gameData.playerTwo()

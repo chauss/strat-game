@@ -21,10 +21,10 @@ class ConsoleReader(object):
         self.__playingField = playingField
         self.__tokenPlacing = tokenPlacing
         self.__movement = movement
-        logger.debug("Starting ConsoleReader...")
-        self._run()
+        logger.debug("Created a new instance of ConsoleReader")
         
-    def _run(self):
+    def run(self):
+        logger.debug("Starting ConsoleReader...")
         while True:
             myInput = raw_input()
             logger.debug("Read the input: %s" % myInput)
@@ -47,6 +47,7 @@ class ConsoleReader(object):
         tries to place a token if myInput has legal values
         '''
         if len(myInput) == 3:
+            logger.debug("Calling tryToPlaceToken in tokenPlacing with args (%s, %s)" % (myInput[1], myInput[2]))
             self.__tokenPlacing.tryToPlaceToken(myInput[1], myInput[2])
         else:
             tui.info("Illegal input")
