@@ -31,7 +31,7 @@ class Tui(object):
         builds a string that contains the players and marks
         the player who is on turn right now
         '''
-        logger.debug("Building PlayerList in GamesState: %d" % self.__gameData.gameState())
+        logger.debug("Building PlayerList in GameState: %d" % self.__gameData.gameState())
         pList = ""
         playerOne = self.__gameData.playerOne()
         playerTwo = self.__gameData.playerTwo()
