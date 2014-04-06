@@ -6,7 +6,7 @@ Created on 30.03.2014
 import logging.config
 from modules.model.token import Token
 import modules.util.ObserverPattern as ObserverPattern
-from modules.controller.fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea
+from modules.controller.fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea, PlayerOnesTurn
 from modules.controller import utils
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
@@ -23,8 +23,8 @@ class TokenPlacing(ObserverPattern.Subject):
         self.__tokenSet = tokenSet
         self.__gameData = gameData
         self.__gameData.setActivePlayer(self.__gameData.playerOne())
-        tpsa = TokenPlacingTopArea(self.__playingField, gameData)
-        self.__playingField.setToString(tpsa)
+        tpta = TokenPlacingTopArea(self.__playingField, gameData)
+        self.__playingField.setToString(tpta)
         self.__playingField.notify()
         
         self.__alreadyPlaced = 0
@@ -46,7 +46,6 @@ class TokenPlacing(ObserverPattern.Subject):
             (x, y) = self._parseValuesToCoords(x, y)
             
             area = self._getCurrentArea()
-
             self._checkValuesInArea(area, x, y)
 
             self._checkFieldIsEmpty(x, y)
@@ -128,12 +127,16 @@ class TokenPlacing(ObserverPattern.Subject):
             logger.debug("activePlayer is PlayerOne: Changing to PlayerTwo")
             self.__gameData.setActivePlayer(self.__gameData.playerTwo())
             utils.changeTokenVisibility(self.__gameData.playerOne(), self.__gameData.playerTwo())
-            tpsa = TokenPlacingBottomArea(self.__playingField, self.__gameData)
-            self.__playingField.setToString(tpsa)
+            tpba = TokenPlacingBottomArea(self.__playingField, self.__gameData)
+            self.__playingField.setToString(tpba)
             self.__playingField.notify()
         else:
             logger.debug("Increasing gameState!")
             self.__gameData.nextGameState()
+            pot = PlayerOnesTurn(self.__playingField, self.__gameData)
+            self.__playingField.setToString(pot)
+            self.__gameData.setActivePlayer(self.__gameData.playerOne())
+            utils.changeTokenVisibility(self.__gameData.playerTwo(), self.__gameData.playerOne())
             self.__playingField.notify()
         
     

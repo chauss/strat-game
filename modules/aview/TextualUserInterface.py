@@ -21,6 +21,7 @@ class Tui(object):
     def _print(self):
         logger.info(80*">")
         logger.info(self._buildPlayerList())
+        logger.info(self._gameState())
         logger.info("%s" % str(self.__playingfield))
         logger.info(80*"<")
         logger.info(self._availableCommands())
@@ -43,6 +44,20 @@ class Tui(object):
             pList += "P%d: %s\n" % (playerOne.getIndex(), playerOne.getName())
             pList += "P%d: %s <<<<\n" % (playerTwo.getIndex(), playerTwo.getName())
         return pList
+    
+    def _gameState(self):
+        '''
+        returns a string that shows the current gameState
+        '''
+        string = "Current gameState: "
+        currentGameState = self.__gameData.gameState()
+        if currentGameState == TOKEN_PLACING:
+            string += "Token Placing"
+        elif currentGameState == TOKEN_MOVING:
+            string += "Token Moving"
+        elif currentGameState == GAME_FINISHED:
+            string += "Game Finished: Winner is %s" % self.__gameData.winner().getName()
+        return string
     
     def _availableCommands(self):
         '''

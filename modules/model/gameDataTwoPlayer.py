@@ -32,6 +32,7 @@ class GameData(object):
         self.__AreaLanesLimit = 0
         self.__activePlayer = None
         self.__gameState = TOKEN_PLACING
+        self.__winner = None
         
     '''Setters for the gameData >>>>>>>>>>>'''
     def setFieldHeight(self, height):
@@ -121,7 +122,20 @@ class GameData(object):
         '''
         self.__gameState += 1
         
+    def setWinner(self, player):
+        '''
+        sets the winner on one of the playing players
+        '''
+        if player == self.__playerOne or player == self.__playerTwo:
+            self.__winner = player
+        else:
+            raise ValueError("The winning player is not part of the playing players")
+        
+###############################################################################
     '''Getters for the gameData >>>>>>>>>>>'''
+###############################################################################
+
+
     def playerCount(self):
         '''
         returns the playerCount
@@ -208,3 +222,9 @@ class GameData(object):
         returns the current gameState
         '''
         return self.__gameState
+    
+    def winner(self):
+        '''
+        returns the winner of the game
+        '''
+        return self.__winner

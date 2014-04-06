@@ -32,7 +32,7 @@ def main():
     tokenSet = buildDefaultTokenSet(gameData)
     tp = TokenPlacing(pf, tokenSet, gameData)
 
-    m = Movement(pf)
+    m = Movement(pf, gameData)
     
     cr = ConsoleReader(gameData, pf, tp, m)
     cr_thread = Thread(target= cr.run())

@@ -53,7 +53,14 @@ class ConsoleReader(object):
             tui.info("Illegal input")
     
     def _tryToMoveToken(self, myInput):
-        pass
+        '''
+        starts the movement of a token
+        '''
+        if len(myInput) == 5:
+            logger.debug("Calling tryToMoveToken in movement with args: (%s, %s, %s, %s)" % (myInput[1], myInput[2], myInput[3], myInput[4]))
+            self.__movement.tryToMoveToken(myInput[1], myInput[2], myInput[3], myInput[4])
+        else:
+            tui.info("Illegal input")
                 
             
             
