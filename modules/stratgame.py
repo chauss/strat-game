@@ -36,10 +36,8 @@ def main():
     
     cr = ConsoleReader(gameData, pf, tp, m)
     cr_thread = Thread(target= cr.run())
-    cr_thread.setDaemon #if only Daemon-Threads are left the program shuts down
     cr_thread.start()
-    
-
+    cr_thread.join()
     
     
 if __name__ == '__main__':
