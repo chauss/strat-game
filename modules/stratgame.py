@@ -13,6 +13,7 @@ from controller.tokenPlacing import TokenPlacing
 from controller.movement import Movement
 from controller.consoleReader import ConsoleReader
 from threading import Thread
+from modules.controller.movementRules import OneFieldPerMove
 
 def main():
     gameData = GameData()
@@ -32,7 +33,7 @@ def main():
     tokenSet = buildDefaultTokenSet(gameData)
     tp = TokenPlacing(pf, tokenSet, gameData)
 
-    m = Movement(pf, gameData)
+    m = Movement(pf, gameData, OneFieldPerMove())
     
     cr = ConsoleReader(gameData, pf, tp, m)
     cr_thread = Thread(target= cr.run())

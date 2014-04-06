@@ -16,13 +16,14 @@ class Movement():
     this class provides methods for a proper movement
     on a playingfield
     '''
-    def __init__(self, playingField, gameData):
+    def __init__(self, playingField, gameData, movementRule):
         '''
         initializes the Movement object with the playingfield
         the movement should be done on
         '''
         self.__playingField = playingField
         self.__gameData = gameData
+        self.__movementRule = movementRule
         self.__pot = PlayerOnesTurn(self.__playingField, self.__gameData)
         self.__ptt = PlayerTwosTurn(self.__playingField, self.__gameData)
         
@@ -39,6 +40,8 @@ class Movement():
             (newX, newY) = self._parseValuesToCoords(newX, newY)
             self._checkFieldIsOnPlayingField(newX, newY)
             
+            self.__movementRule.checkMove(oldX, oldY, newX, newY)
+            
             player = self.__gameData.activePlayer()
             movingToken = self._getMovingToken(oldX, oldY)
             
@@ -46,9 +49,8 @@ class Movement():
             
             destiToken = self._getTokenOnDestinationField(newX, newY)
             
-            self._checkIfTokenBelongsNotToActivPlayer(destiToken, player)
-            
             if destiToken:
+                self._checkIfTokenBelongsNotToActivPlayer(destiToken, player)
                 self._fightAndMove(movingToken, oldX, oldY, destiToken, newX, newY)
             else:
                 self.__playingField.leaveField(oldX, oldY)
@@ -81,7 +83,7 @@ class Movement():
         height = self.__gameData.fieldHeight()
         width = self.__gameData.fieldWidth()
         
-        if (x > height or x < 0) or (y > width or y < 0):
+        if (x > height-1 or x < 0) or (y > width-1 or y < 0):
             raise ValueError("The coords (%d, %d) do not point on a field on the playingField" % (x, y))
         
     def _getMovingToken(self, x, y):
