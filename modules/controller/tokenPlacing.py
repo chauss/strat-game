@@ -37,8 +37,9 @@ class TokenPlacing(ObserverPattern.Subject):
         '''
         logger.debug("Start to place a Token...")
         try:
+            logger.debug("Enter While-loop check: tokenSet[currentRank(%d)](%d)  = placedOfRank(%d)" %(self.__currentRank, self.__tokenSet[self.__currentRank], self.__placedOfRank))
             while self.__tokenSet[self.__currentRank] == self.__placedOfRank:
-                logger.debug("In while-loop because: currentRank(%d) = placedOfRank(%d)" %(self.__tokenSet[self.__currentRank], self.__placedOfRank))
+                logger.debug("In While-loop check: tokenSet[currentRank(%d)](%d)  = placedOfRank(%d)" %(self.__currentRank, self.__tokenSet[self.__currentRank], self.__placedOfRank))
                 self.__currentRank += 1
                 self.__placedOfRank = 0
                 logger.debug("increased currentRank to %d" % self.__currentRank)
@@ -61,6 +62,7 @@ class TokenPlacing(ObserverPattern.Subject):
             
             if self.__alreadyPlaced == self.__gameData.tokensPerPlayer():
                 self.__currentRank = 0
+                self.__placedOfRank = 0
                 self.__alreadyPlaced = 0
                 self._changePlayer()
             
