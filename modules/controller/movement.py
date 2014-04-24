@@ -3,8 +3,8 @@ Created on 29.03.2014
 
 @author: Chris
 '''
-from modules.controller.fieldToString import PlayerOnesTurn, PlayerTwosTurn
-from modules.controller import utils
+from fieldToString import PlayerOnesTurn, PlayerTwosTurn
+import utils
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

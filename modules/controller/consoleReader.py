@@ -3,8 +3,8 @@ Created on 04.04.2014
 
 @author: Chris
 '''
-from modules.model.gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
-                                            GAME_FINISHED
+from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
+                              GAME_FINISHED
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
@@ -30,7 +30,7 @@ class ConsoleReader(object):
                 logger.debug("Shutting down ConsoleReader")
                 break
             
-            myInput = input(">>>> ")
+            myInput = raw_input(">>>> ")
             logger.debug("Read the input: %s" % myInput)
             if myInput[0] != '/':
                 tui.info("Commands begin with a \"/\"")

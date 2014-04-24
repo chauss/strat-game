@@ -3,9 +3,9 @@ Created on 31.03.2014
 
 @author: Chris
 '''
-from modules.model.myExceptions import DataNotSetError
-from modules.model.player import Player
-from modules.model.area import Area
+from myExceptions import DataNotSetError
+from player import Player
+from area import Area
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

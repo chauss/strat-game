@@ -3,7 +3,7 @@ Created on 31.03.2014
 
 @author: Chris
 '''
-from modules.controller.twoAreaBuilder import AreaBuilder
+from twoAreaBuilder import AreaBuilder
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

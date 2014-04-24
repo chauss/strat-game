@@ -4,10 +4,10 @@ Created on 29.03.2014
 @author: Chris
 '''
 import logging.config
-from modules.model import field
-from modules.model.myExceptions import PlayingFieldError
-import modules.util.ObserverPattern as ObserverPattern
-from modules.controller.fieldToString import IFieldToString
+from field import Field
+from myExceptions import PlayingFieldError
+import ObserverPattern as ObserverPattern
+from fieldToString import IFieldToString
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
@@ -43,7 +43,7 @@ class PlayingField(ObserverPattern.Subject):
         for x in range(self.__height):
             self.__playingField.append([])
             for y in range(self.__width):
-                self.__playingField[x].append(field.Field())
+                self.__playingField[x].append(Field())
                 logger.debug("Added Field(%d/%d) to PlayingField" % (x, y))
         self.__build = True
         

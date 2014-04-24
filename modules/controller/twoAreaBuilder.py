@@ -3,7 +3,7 @@ Created on 31.03.2014
 
 @author: Chris
 '''
-from modules.model.area import Area
+from area import Area
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

@@ -3,7 +3,7 @@ Created on 01.04.2014
 
 @author: Chris
 '''
-from modules.model.token import MAX_RANK
+from token import MAX_RANK
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')

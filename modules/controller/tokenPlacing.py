@@ -4,10 +4,10 @@ Created on 30.03.2014
 @author: Chris
 '''
 import logging.config
-from modules.model.token import Token
-import modules.util.ObserverPattern as ObserverPattern
-from modules.controller.fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea, PlayerOnesTurn
-from modules.controller import utils
+from token import Token
+import ObserverPattern as ObserverPattern
+from fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea, PlayerOnesTurn
+import utils
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')

@@ -3,17 +3,17 @@ Created on 29.03.2014
 
 @author: Chris
 '''
-import aview.TextualUserInterface as TextualUserInterface
-import modules.controller.playingfield as playingfield
-from model.player import Player
-from model.gameDataTwoPlayer import GameData
-from controller.gameDataFiller import defaultGameDataTwoPlayer
-from controller.tokenSetBuilder import buildDefaultTokenSet
-from controller.tokenPlacing import TokenPlacing
-from controller.movement import Movement
-from controller.consoleReader import ConsoleReader
+import TextualUserInterface as TextualUserInterface
+import playingfield as playingfield
+from player import Player
+from gameDataTwoPlayer import GameData
+from gameDataFiller import defaultGameDataTwoPlayer
+from tokenSetBuilder import buildDefaultTokenSet
+from tokenPlacing import TokenPlacing
+from movement import Movement
+from consoleReader import ConsoleReader
 from threading import Thread
-from modules.controller.movementRules import OneFieldPerMove
+from movementRules import OneFieldPerMove
 
 def main():
     gameData = GameData()

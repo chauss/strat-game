@@ -3,7 +3,7 @@ Created on 29.03.2014
 
 @author: Chris
 '''
-from modules.model.gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
+from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
                                             GAME_FINISHED
 import logging.config
 
