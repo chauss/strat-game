@@ -16,6 +16,8 @@ class GameDataDlg(wx.Dialog):
         
         self.createControls()
         
+        
+        
     def createControls(self):
         mainSizer = wx.FlexGridSizer(2, 4, 0, 0)
         

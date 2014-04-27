@@ -18,14 +18,14 @@ class PlayingField(ObserverPattern.Subject):
         creates a new PlayingField object and sets its height, width
         and the number of tokens for each player on this playingfield
         '''
-        lanesPerPlayer = gameData.fieldHeight() / gameData.playerCount()
-        fieldsPerPlayer = lanesPerPlayer * gameData.fieldWidth()
+        lanesPerPlayer = gameData.fieldHeight / gameData.playerCount
+        fieldsPerPlayer = lanesPerPlayer * gameData.fieldWidth
         
-        if fieldsPerPlayer >= gameData.tokensPerPlayer():
+        if fieldsPerPlayer >= gameData.tokensPerPlayer:
             super(PlayingField, self).__init__()
-            self.__height = gameData.fieldHeight()
-            self.__width = gameData.fieldWidth()
-            self.__tokensPerPlayer = gameData.tokensPerPlayer()
+            self.__height = gameData.fieldHeight
+            self.__width = gameData.fieldWidth
+            self.__tokensPerPlayer = gameData.tokensPerPlayer
             self.__build = False
             self._build()
             self.__toString = IFieldToString()

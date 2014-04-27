@@ -18,7 +18,7 @@ def buildDefaultTokenSet(gameData):
     for x in range(MAX_RANK+1):
         tokenSet.append(0)
     
-    for x in range(gameData.tokensPerPlayer()):
+    for x in range(gameData.tokensPerPlayer):
         tokenSet[x % (MAX_RANK+1)] += 1
         
     return tokenSet

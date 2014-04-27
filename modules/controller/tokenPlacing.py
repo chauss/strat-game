@@ -22,7 +22,7 @@ class TokenPlacing(ObserverPattern.Subject):
         self.__playingField = playingField
         self.__tokenSet = tokenSet
         self.__gameData = gameData
-        self.__gameData.setActivePlayer(self.__gameData.playerOne())
+        self.__gameData.activePlayer = self.__gameData.playerOne
         tpta = TokenPlacingTopArea(self.__playingField, gameData)
         self.__playingField.setToString(tpta)
         self.__playingField.notify()
@@ -50,7 +50,7 @@ class TokenPlacing(ObserverPattern.Subject):
 
             self._checkFieldIsEmpty(x, y)
             
-            player = self.__gameData.activePlayer()
+            player = self.__gameData.activePlayer
             token = Token(self.__currentRank, player)
             self.__playingField.placeToken(token, x, y)
             player.addTokenOnField(token)
@@ -58,7 +58,7 @@ class TokenPlacing(ObserverPattern.Subject):
             self.__placedOfRank += 1
             self.__alreadyPlaced += 1
             
-            if self.__alreadyPlaced == self.__gameData.tokensPerPlayer():
+            if self.__alreadyPlaced == self.__gameData.tokensPerPlayer:
                 self.__currentRank = 0
                 self.__placedOfRank = 0
                 self.__alreadyPlaced = 0
@@ -87,12 +87,12 @@ class TokenPlacing(ObserverPattern.Subject):
         returns the current area depending on the player who
         is on turn
         '''
-        player = self.__gameData.activePlayer()
+        player = self.__gameData.activePlayer
         if player.getIndex() == 1:
-            area = self.__gameData.topArea()
+            area = self.__gameData.topArea
             logger.debug("Choosing topArea to place in")
         elif player.getIndex() == 2:
-            area = self.__gameData.bottomArea()
+            area = self.__gameData.bottomArea
             logger.debug("Choosing bottomArea to place in")
         return area
     
@@ -122,11 +122,11 @@ class TokenPlacing(ObserverPattern.Subject):
         ends the tokenPlacing state of the game
         '''
         logger.debug("Attempting to change Player...")
-        player = self.__gameData.activePlayer()
-        if player == self.__gameData.playerOne():
+        player = self.__gameData.activePlayer
+        if player == self.__gameData.playerOne:
             logger.debug("activePlayer is PlayerOne: Changing to PlayerTwo")
-            self.__gameData.setActivePlayer(self.__gameData.playerTwo())
-            utils.changeTokenVisibility(self.__gameData.playerOne(), self.__gameData.playerTwo())
+            self.__gameData.activePlayer = self.__gameData.playerTwo
+            utils.changeTokenVisibility(self.__gameData.playerOne, self.__gameData.playerTwo)
             tpba = TokenPlacingBottomArea(self.__playingField, self.__gameData)
             self.__playingField.setToString(tpba)
             self.__playingField.notify()
@@ -135,8 +135,8 @@ class TokenPlacing(ObserverPattern.Subject):
             self.__gameData.nextGameState()
             pot = PlayerOnesTurn(self.__playingField, self.__gameData)
             self.__playingField.setToString(pot)
-            self.__gameData.setActivePlayer(self.__gameData.playerOne())
-            utils.changeTokenVisibility(self.__gameData.playerTwo(), self.__gameData.playerOne())
+            self.__gameData.activePlayer = self.__gameData.playerOne
+            utils.changeTokenVisibility(self.__gameData.playerTwo, self.__gameData.playerOne)
             self.__playingField.notify()
         
     

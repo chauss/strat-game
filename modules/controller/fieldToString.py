@@ -20,12 +20,12 @@ class PlayerOnesTurn(IFieldToString):
     
     def toString(self):
         string = "   "
-        for y in range(self.__gameData.fieldWidth()):
+        for y in range(self.__gameData.fieldWidth):
             string += "   %d   " % y
         string += "\n"
-        for x in range(self.__gameData.fieldHeight()-1, -1, -1):
+        for x in range(self.__gameData.fieldHeight-1, -1, -1):
             string += "%d  " % x
-            for y in range (self.__gameData.fieldWidth()):
+            for y in range (self.__gameData.fieldWidth):
                 string += "["
                 occToken = self.__playingField.getTokenOnField(x, y)
                 if occToken == None:
@@ -50,12 +50,12 @@ class PlayerTwosTurn(IFieldToString):
         
     def toString(self):
         string = "   "
-        for y in range(self.__gameData.fieldWidth()):
+        for y in range(self.__gameData.fieldWidth):
             string += "   %d   " % y
         string += "\n"
-        for x in range(self.__gameData.fieldHeight()):
+        for x in range(self.__gameData.fieldHeight):
             string += "%d  " % x
-            for y in range (self.__gameData.fieldWidth()):
+            for y in range (self.__gameData.fieldWidth):
                 string += "["
                 occToken = self.__playingField.getTokenOnField(x, y)
                 if occToken == None:
@@ -83,16 +83,16 @@ class TokenPlacingTopArea(IFieldToString):
         specially marked 
         '''
         string = "   "
-        for y in range(self.__gameData.fieldWidth()):
+        for y in range(self.__gameData.fieldWidth):
             string += "   %d   " % y
         string += "\n"
-        for x in range(self.__gameData.fieldHeight()-1, -1, -1):
+        for x in range(self.__gameData.fieldHeight-1, -1, -1):
             string += "%d  " % x
-            for y in range (self.__gameData.fieldWidth()):
+            for y in range (self.__gameData.fieldWidth):
                 string += "["
                 occToken = self.__playingField.getTokenOnField(x, y)
                 if occToken == None:
-                    if self.__gameData.topArea().isFieldInArea(x, y):
+                    if self.__gameData.topArea.isFieldInArea(x, y):
                         string += 5*'#'
                     else:
                         string += 5*"-"
@@ -119,16 +119,16 @@ class TokenPlacingBottomArea(IFieldToString):
         specially marked 
         '''
         string = "   "
-        for y in range(self.__gameData.fieldWidth()):
+        for y in range(self.__gameData.fieldWidth):
             string += "   %d   " % y
         string += "\n"
-        for x in range(self.__gameData.fieldHeight()):
+        for x in range(self.__gameData.fieldHeight):
             string += "%d  " % x
-            for y in range (self.__gameData.fieldWidth()):
+            for y in range (self.__gameData.fieldWidth):
                 string += "["
                 occToken = self.__playingField.getTokenOnField(x, y)
                 if occToken == None:
-                    if self.__gameData.bottomArea().isFieldInArea(x, y):
+                    if self.__gameData.bottomArea.isFieldInArea(x, y):
                         string += 5*'#'
                     else:
                         string += 5*"-"

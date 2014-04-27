@@ -22,8 +22,8 @@ def main():
     #p1name = raw_input("Please enter the name of the first player: ")
     #p2name = raw_input("Please enter the name of the second player: ")
     
-    gameData.setPlayerOne(Player("Chris", 1))
-    gameData.setPlayerTwo(Player("Laura", 2))
+    gameData.playerOne = Player("Chris", 1)
+    gameData.playerTwo = Player("Laura", 2)
     
     pf = playingfield.PlayingField(gameData)
     

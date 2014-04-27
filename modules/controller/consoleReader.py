@@ -26,13 +26,13 @@ class ConsoleReader(object):
     def run(self):
         logger.debug("Starting ConsoleReader...")
         while True:
-            if self.__gameData.winner():
+            if self.__gameData.winner:
                 logger.debug("Shutting down ConsoleReader")
                 break
             
             myInput = raw_input(">>>> ")
             logger.debug("Read the input: %s" % myInput)
-            if myInput[0] != '/':
+            if not myInput or myInput[0] != '/':
                 tui.info("Commands begin with a \"/\"")
                 continue
             

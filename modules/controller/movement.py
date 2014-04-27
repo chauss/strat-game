@@ -42,7 +42,7 @@ class Movement():
             
             self.__movementRule.checkMove(oldX, oldY, newX, newY)
             
-            player = self.__gameData.activePlayer()
+            player = self.__gameData.activePlayer
             movingToken = self._getMovingToken(oldX, oldY)
             
             self._checkIfTokenBelongsToActivPlayer(movingToken, player)
@@ -80,8 +80,8 @@ class Movement():
         checks weather the field x, y is on the playingfield
         or not
         '''
-        height = self.__gameData.fieldHeight()
-        width = self.__gameData.fieldWidth()
+        height = self.__gameData.fieldHeight
+        width = self.__gameData.fieldWidth
         
         if (x > height-1 or x < 0) or (y > width-1 or y < 0):
             raise ValueError("The coords (%d, %d) do not point on a field on the playingField" % (x, y))
@@ -137,7 +137,7 @@ class Movement():
             self.__playingField.leaveField(mx, my)
             movingToken.getOwner().removeTokenOnField(movingToken)
             if not movingToken.getOwner().getTokensOnField():
-                self.__gameData.serWinner(destiToken.getOwner())
+                self.__gameData.winner = destiToken.getOwner()
                 self.__gameData.nextGameState()
 
         else:
@@ -147,7 +147,7 @@ class Movement():
             self.__playingField.placeToken(movingToken, dx, dy)
             destiToken.getOwner().removeTokenOnField(destiToken)
             if not destiToken.getOwner().getTokensOnField():
-                self.__gameData.setWinner(movingToken.getOwner())
+                self.__gameData.winner = movingToken.getOwner()
                 self.__gameData.nextGameState()
                 
     def _changeTurn(self):
@@ -156,19 +156,19 @@ class Movement():
         of the playingField
         '''
         logger.debug("Attempt to change turn...")
-        activePlayer = self.__gameData.activePlayer()
+        activePlayer = self.__gameData.activePlayer
         logger.debug("Active player is %s" % activePlayer.getName())
         
-        if activePlayer == self.__gameData.playerOne():
-            self.__gameData.setActivePlayer(self.__gameData.playerTwo())
+        if activePlayer == self.__gameData.playerOne:
+            self.__gameData.activePlayer = self.__gameData.playerTwo
             self.__playingField.setToString(self.__ptt)
-            utils.changeTokenVisibility(self.__gameData.playerOne(), self.__gameData.playerTwo())
+            utils.changeTokenVisibility(self.__gameData.playerOne, self.__gameData.playerTwo)
             
         else:
-            self.__gameData.setActivePlayer(self.__gameData.playerOne())
+            self.__gameData.activePlayer = self.__gameData.playerOne
             self.__playingField.setToString(self.__pot)
-            utils.changeTokenVisibility(self.__gameData.playerTwo(), self.__gameData.playerOne())
+            utils.changeTokenVisibility(self.__gameData.playerTwo, self.__gameData.playerOne)
             
-        logger.debug("Changed active player to %s" % self.__gameData.activePlayer())
+        logger.debug("Changed active player to %s" % self.__gameData.activePlayer)
         self.__playingField.notify()
             

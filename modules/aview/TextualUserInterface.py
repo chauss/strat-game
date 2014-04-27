@@ -33,9 +33,9 @@ class Tui(object):
         '''
         logger.debug("Building PlayerList in GameState: %d" % self.__gameData.gameState())
         pList = ""
-        playerOne = self.__gameData.playerOne()
-        playerTwo = self.__gameData.playerTwo()
-        activePlayer = self.__gameData.activePlayer()
+        playerOne = self.__gameData.playerOne
+        playerTwo = self.__gameData.playerTwo
+        activePlayer = self.__gameData.activePlayer
         
         if playerOne == activePlayer:
             pList += "P%d: %s <<<<\n" % (playerOne.getIndex(), playerOne.getName())
@@ -56,7 +56,7 @@ class Tui(object):
         elif currentGameState == TOKEN_MOVING:
             string += "Token Moving"
         elif currentGameState == GAME_FINISHED:
-            string += "Game Finished: Winner is %s" % self.__gameData.winner().getName()
+            string += "Game Finished: Winner is %s" % self.__gameData.winner.getName()
         return string
     
     def _availableCommands(self):
