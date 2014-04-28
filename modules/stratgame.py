@@ -3,7 +3,9 @@ Created on 29.03.2014
 
 @author: Chris
 '''
+import wx
 import TextualUserInterface as TextualUserInterface
+from mainframeapp import MainWindow
 import playingfield as playingfield
 from player import Player
 from gameDataTwoPlayer import GameData
@@ -27,6 +29,11 @@ def main():
     
     pf = playingfield.PlayingField(gameData)
     
+    frame = MainWindow(None, gameData)
+    gui_thread = Thread(target= frame.run(frame))
+    
+    
+    
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
 
@@ -39,6 +46,8 @@ def main():
     cr_thread = Thread(target= cr.run())
     cr_thread.start()
     cr_thread.join()
+    gui_thread.start()
+    gui_thread.join()
     
     
 if __name__ == '__main__':

@@ -5,12 +5,14 @@ Created on 24.04.2014
 '''
 import wx
 from aboutDlg import AboutDlg
+from gamedataDlg import GameDataDlg
 
 ID_SHOW_GAMEDATA = wx.NewId()
 
 class MenuBar(wx.MenuBar):
-    def __init__(self, parent):
+    def __init__(self, parent, gameData):
         super(MenuBar, self).__init__()
+        self.gameData = gameData
         self.parent = parent
         self._createControls()
         
@@ -38,11 +40,15 @@ class MenuBar(wx.MenuBar):
         self.parent.Close()
         
     def onShowGamedata(self, event):
-        pass
+        dlg = GameDataDlg(self, self.gameData)
+        if dlg.ShowModal() == wx.ID_OK:
+            self.gameData = dlg.gameData
+        dlg.Destroy()
     
     def onAbout(self, event):
         dlg = AboutDlg(self)
         dlg.ShowModal()
+        dlg.Destroy()
     
     
         

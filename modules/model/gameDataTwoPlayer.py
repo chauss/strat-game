@@ -4,7 +4,6 @@ Created on 31.03.2014
 @author: Chris
 '''
 from myExceptions import DataNotSetError
-from player import Player
 from area import Area
 import logging.config
 
@@ -28,7 +27,7 @@ class GameData(object):
         self.__playerTwo = None
         self.__topArea = None
         self.__bottomArea = None
-        self.__AreaLanesLimit = 0
+        self.__areaLanesLimit = 0
         self.__activePlayer = None
         self.__playerCount = 2
         self.__gameState = TOKEN_PLACING
@@ -94,6 +93,10 @@ class GameData(object):
         if tokens < 1:
             logger.debug("Tried to set TokensPerPlayer=%d but must be at least 1" % tokens)
             raise ValueError("TokensPerPlayer must be at least 1")
+        maxTokens = (self.__fieldHeight / 2) * self.__fieldWidth
+        if tokens > maxTokens:
+            logger.debug("Tried to set TokensPerPlayer=%d but can max be %d" % (tokens, maxTokens))
+            raise ValueError("To much TokensPerPlayer for current playingfield")
         self.__tokensPerPlayer = tokens
         
         
@@ -188,7 +191,7 @@ class GameData(object):
         '''
         returns the fieldHeight
         '''
-        return self.__AreaLanesLimit
+        return self.__areaLanesLimit
     
     @areaLanesLimit.setter
     def areaLanesLimit(self, limit):
@@ -196,10 +199,10 @@ class GameData(object):
         Can only be called if fieldWidth and tokensPerPlayer
         have already been set or raises an ValueError
         '''
-        if (limit * self.fieldWidth) < self.tokensPerPlayer:
+        if (limit * self.__fieldWidth) < self.__tokensPerPlayer:
             logger.debug("Tried to set too small limit=%d" % limit)
             raise ValueError("The limit is to small for the game conditions")
-        self.__AreaLanesLimit = limit
+        self.__areaLanesLimit = limit
         
         
     @property
@@ -226,8 +229,10 @@ class GameData(object):
     
     @playerCount.setter
     def playerCount(self, playerCount):
-        if playerCount > 0:
-            self.__playerCount = playerCount
+        if playerCount != 2:
+            logger.debug("Tried to set playercount != 2 in gameDataTwoPlayer")
+            raise ValueError("Playercount can only be 2 in this gameData")
+        self.__playerCount = playerCount
         
         
     @property
