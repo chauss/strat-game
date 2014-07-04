@@ -4,10 +4,12 @@ Created on 24.04.2014
 @author: Chris
 '''
 import wx
+import subprocess
 from aboutDlg import AboutDlg
 from gamedataDlg import GameDataDlg
 
 ID_SHOW_GAMEDATA = wx.NewId()
+ID_OPEN_CONSOLE = wx.NewId()
 
 class MenuBar(wx.MenuBar):
     def __init__(self, parent, gameData):
@@ -25,6 +27,11 @@ class MenuBar(wx.MenuBar):
         
         self.Append(filemenu, "&File")
         
+        # EXTRAS
+        filemenu = wx.Menu()
+        filemenu.Append(ID_OPEN_CONSOLE, "&Open Console", "Opens the console / tui")
+        
+        self.Append(filemenu, "&Extras")
         # HELP
         filemenu = wx.Menu()
         filemenu.Append(wx.ID_ABOUT, "&About", "Information about this program")
@@ -34,6 +41,7 @@ class MenuBar(wx.MenuBar):
         # EVENT MANAGEMENT
         wx.EVT_MENU(self, wx.ID_EXIT, self.onExit)
         wx.EVT_MENU(self, ID_SHOW_GAMEDATA, self.onShowGamedata)
+        wx.EVT_MENU(self, ID_OPEN_CONSOLE, self.openConsole)
         wx.EVT_MENU(self, wx.ID_ABOUT, self.onAbout)
         
     def onExit(self, event):
@@ -44,7 +52,12 @@ class MenuBar(wx.MenuBar):
         if dlg.ShowModal() == wx.ID_OK:
             self.gameData = dlg.gameData
         dlg.Destroy()
-    
+        
+    def openConsole(self, event):
+        #subprocess.call()
+        # TODO: need to call the tui
+        pass
+        
     def onAbout(self, event):
         dlg = AboutDlg(self)
         dlg.ShowModal()

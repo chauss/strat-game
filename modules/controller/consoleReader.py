@@ -5,18 +5,20 @@ Created on 04.04.2014
 '''
 from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
                               GAME_FINISHED
+from threading import Thread
 import logging.config
 
 logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('controller')
 tui = logging.getLogger('tui')
 
-class ConsoleReader(object):
+class ConsoleReader(Thread):
     '''
     this class should be started in an extra thread.
     it waits for input from the textualuserinterface
     '''
     def __init__(self, gameData, playingField, tokenPlacing, movement):
+        Thread.__init__(self)
         self.__gameData = gameData
         self.__playingField = playingField
         self.__tokenPlacing = tokenPlacing

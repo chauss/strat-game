@@ -14,7 +14,6 @@ from tokenSetBuilder import buildDefaultTokenSet
 from tokenPlacing import TokenPlacing
 from movement import Movement
 from consoleReader import ConsoleReader
-from threading import Thread
 from movementRules import OneFieldPerMove
 
 def main():
@@ -28,26 +27,22 @@ def main():
     gameData.playerTwo = Player("Laura", 2)
     
     pf = playingfield.PlayingField(gameData)
+    tokenSet = buildDefaultTokenSet(gameData)
+    tp = TokenPlacing(pf, tokenSet, gameData)
+    m = Movement(pf, gameData, OneFieldPerMove())
     
+    # Start the Console reader in a new Thread
+    cr = ConsoleReader(gameData, pf, tp, m)
+    cr.start()
+    
+    app = wx.App(False)
     frame = MainWindow(None, gameData)
-    gui_thread = Thread(target= frame.run(frame))
-    
-    
+    app.MainLoop()
     
     tui = TextualUserInterface.Tui(pf, gameData)
     pf.attach(tui)
 
-    tokenSet = buildDefaultTokenSet(gameData)
-    tp = TokenPlacing(pf, tokenSet, gameData)
-
-    m = Movement(pf, gameData, OneFieldPerMove())
-    
-    cr = ConsoleReader(gameData, pf, tp, m)
-    cr_thread = Thread(target= cr.run())
-    cr_thread.start()
-    cr_thread.join()
-    gui_thread.start()
-    gui_thread.join()
+    cr.join()
     
     
 if __name__ == '__main__':

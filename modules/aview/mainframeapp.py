@@ -8,7 +8,7 @@ from menuBar import MenuBar
 
 class MainWindow(wx.Frame):
     def __init__(self, parent, gameData):
-        self.app = wx.App(False)
+        
         wx.Frame.__init__(self, parent, title="StratGame", size=(800, 600),
                           style=wx.RESIZE_BORDER | wx.DEFAULT_FRAME_STYLE)
         self.gameData = gameData
@@ -16,9 +16,7 @@ class MainWindow(wx.Frame):
         
         self.SetMenuBar(MenuBar(self, self.gameData))
         
-    def run(self, frame):
         self.Show(True)
         
-        frame = frame
-        self.app.MainLoop()
+        
         
