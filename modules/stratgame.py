@@ -20,9 +20,6 @@ def main():
     gameData = GameData()
     defaultGameDataTwoPlayer(gameData)
     
-    #p1name = raw_input("Please enter the name of the first player: ")
-    #p2name = raw_input("Please enter the name of the second player: ")
-    
     gameData.playerOne = Player("Chris", 1)
     gameData.playerTwo = Player("Laura", 2)
     
@@ -35,13 +32,13 @@ def main():
     cr = ConsoleReader(gameData, pf, tp, m)
     cr.start()
     
+    tui = TextualUserInterface.Tui(pf, gameData)
+    pf.attach(tui)
+    
     app = wx.App(False)
     frame = MainWindow(None, gameData)
     app.MainLoop()
     
-    tui = TextualUserInterface.Tui(pf, gameData)
-    pf.attach(tui)
-
     cr.join()
     
     
