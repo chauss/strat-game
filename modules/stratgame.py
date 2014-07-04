@@ -33,12 +33,14 @@ def main():
     cr.start()
     
     tui = TextualUserInterface.Tui(pf, gameData)
+    tui.update()
     pf.attach(tui)
     
     app = wx.App(False)
-    frame = MainWindow(None, gameData)
+    MainWindow(None, gameData)
     app.MainLoop()
-    
+
+    cr.shutdown()
     cr.join()
     
     
