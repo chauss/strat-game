@@ -5,10 +5,9 @@ Created on 29.03.2014
 '''
 from fieldToString import PlayerOnesTurn, PlayerTwosTurn
 import utils
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.movement')
 tui = logging.getLogger('tui')
 
 class Movement():

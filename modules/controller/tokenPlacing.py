@@ -3,15 +3,14 @@ Created on 30.03.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 from token import Token
 import ObserverPattern as ObserverPattern
 from fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea, PlayerOnesTurn
 import utils
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
-tui = logging.getLogger('tui')
+logger = logging.getLogger('controller.tokenPlacing')
+tui = logging.getLogger('tui.tokenPlacing')
 
 class TokenPlacing(ObserverPattern.Subject):
     '''

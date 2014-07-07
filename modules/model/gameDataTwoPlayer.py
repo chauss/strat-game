@@ -5,10 +5,9 @@ Created on 31.03.2014
 '''
 from myExceptions import DataNotSetError
 from area import Area
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('model.gdtp')
 
 TOKEN_PLACING = 0
 TOKEN_MOVING = 1

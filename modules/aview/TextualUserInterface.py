@@ -5,9 +5,8 @@ Created on 29.03.2014
 '''
 from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
                                             GAME_FINISHED
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
 logger = logging.getLogger('tui')
                            
 class Tui(object):

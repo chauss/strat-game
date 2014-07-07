@@ -3,10 +3,9 @@ Created on 28.03.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('model.player')
 
 class Player():
     def __init__(self, name, index):

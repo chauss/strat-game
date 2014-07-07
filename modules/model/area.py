@@ -5,8 +5,7 @@ Created on 30.03.2014
 '''
 import logging.config
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('model.area')
 
 class Area(object):
     def __init__(self):

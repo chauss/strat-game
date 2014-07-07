@@ -6,15 +6,14 @@ Created on 04.04.2014
 from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
                               GAME_FINISHED
 from threading import Thread
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
-tui = logging.getLogger('tui')
+logger = logging.getLogger('controller.consoleReader')
+tui = logging.getLogger('tui.consoleReader')
 
 class ConsoleReader(Thread):
     '''this class should be started in an extra thread.
-    it waits for input from the textualuserinterface
+    it waits for input from the command line
     '''
     def __init__(self, gameData, playingField, tokenPlacing, movement):
         Thread.__init__(self)
@@ -81,9 +80,3 @@ class ConsoleReader(Thread):
         '''
         self.__alive = False
                 
-            
-            
-            
-            
-            
-            

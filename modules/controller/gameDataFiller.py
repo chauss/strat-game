@@ -4,10 +4,9 @@ Created on 31.03.2014
 @author: Chris
 '''
 from twoAreaBuilder import AreaBuilder
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.gameDataFiller')
 
 def defaultGameDataTwoPlayer(gameData):
     '''

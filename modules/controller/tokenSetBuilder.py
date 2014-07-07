@@ -4,10 +4,9 @@ Created on 01.04.2014
 @author: Chris
 '''
 from token import MAX_RANK
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.tokensetBuilder')
 
 def buildDefaultTokenSet(gameData):
     '''

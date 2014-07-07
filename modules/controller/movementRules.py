@@ -3,10 +3,9 @@ Created on 06.04.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.movementRules')
 
 class IMoveRule(object):
     def __init__(self):

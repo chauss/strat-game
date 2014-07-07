@@ -4,10 +4,9 @@ Created on 31.03.2014
 @author: Chris
 '''
 from area import Area
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.2areaBuilder')
 
 class AreaBuilder(object):
     def __init__(self, gameData):

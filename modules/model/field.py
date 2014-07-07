@@ -3,11 +3,10 @@ Created on 27.03.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 from myExceptions import IllegalMoveError
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('model')
+logger = logging.getLogger('model.field')
 
 class Field():
     '''

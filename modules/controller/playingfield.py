@@ -3,14 +3,13 @@ Created on 29.03.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 from field import Field
 from myExceptions import PlayingFieldError
 import ObserverPattern as ObserverPattern
 from fieldToString import IFieldToString
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.playingfield')
 
 class PlayingField(ObserverPattern.Subject):
     def __init__(self, gameData):

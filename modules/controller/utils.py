@@ -3,10 +3,9 @@ Created on 02.04.2014
 
 @author: Chris
 '''
-import logging.config
+import logging
 
-logging.config.fileConfig('C:\\Users\\Chris\\git\\stratgame\\config\\log.config')
-logger = logging.getLogger('controller')
+logger = logging.getLogger('controller.utils')
 
 def changeTokenVisibility(oldPlayer, newPlayer):
     for token in oldPlayer.getTokensOnField():
