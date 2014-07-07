@@ -33,20 +33,19 @@ def main():
     tp = TokenPlacing(pf, tokenSet, gameData)
     m = Movement(pf, gameData, OneFieldPerMove())
     
-    # Start the Console reader in a new Thread
-    cr = ConsoleReader(gameData, pf, tp, m)
-    cr.start()
-    
     tui = TextualUserInterface.Tui(pf, gameData)
     tui.update()
     pf.attach(tui)
+    
+    # Start the Console reader in a new Thread
+    cr = ConsoleReader(gameData, pf, tp, m)
+    cr.start()
     
     app = wx.App(False)
     MainWindow(None, gameData)
     app.MainLoop()
 
     cr.shutdown()
-    cr.join()
     
     
 if __name__ == '__main__':

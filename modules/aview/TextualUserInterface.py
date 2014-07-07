@@ -23,7 +23,6 @@ class Tui(object):
         logger.info(self._gameState())
         logger.info("%s" % str(self.__playingfield))
         logger.info(80*"<")
-        logger.info(self._availableCommands())
         
     def _buildPlayerList(self):
         '''
@@ -58,23 +57,4 @@ class Tui(object):
             string += "Game Finished: Winner is %s" % self.__gameData.winner.getName()
         return string
     
-    def _availableCommands(self):
-        '''
-        prints the commands that are available in the current
-        state of game
-        '''
-        commandString = ""
-        gameState = self.__gameData.gameState()
-        if gameState == TOKEN_PLACING:
-            commandString += "Available commands:\n"
-            commandString += "/p or /place: <xCoord> <yCoord>"
-
-        elif gameState == TOKEN_MOVING:
-            commandString += "Available commands:\n"
-            commandString += "/m or /move: <xCoordOld> <yCoordOld> <xCoordNew> <yCoordNew>"
-
-        elif gameState == GAME_FINISHED:
-            commandString += "The game is finished"
-
-        return commandString
         

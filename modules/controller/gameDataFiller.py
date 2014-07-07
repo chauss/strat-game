@@ -14,10 +14,10 @@ def defaultGameDataTwoPlayer(gameData):
     game Data
     '''
     logger.debug("Filling gameData object with defaultGameDataTwoPlayer data")
-    gameData.fieldHeight = 10
-    gameData.fieldWidth = 5
-    gameData.tokensPerPlayer = 10
-    gameData.areaLanesLimit = 2
+    gameData.fieldHeight = 3
+    gameData.fieldWidth = 1
+    gameData.tokensPerPlayer = 1
+    gameData.areaLanesLimit = 1
     
     ab = AreaBuilder(gameData)
     ab.buildTopStartArea()
