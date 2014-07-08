@@ -3,6 +3,16 @@ Created on 29.03.2014
 
 @author: Chris
 '''
+import sys, os
+appPath = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(1, os.path.join(appPath, "modules"))
+sys.path.insert(1, os.path.join(appPath, "modules", "aview"))
+sys.path.insert(1, os.path.join(appPath, "modules", "aview", "dialogs"))
+sys.path.insert(1, os.path.join(appPath, "modules", "controller"))
+sys.path.insert(1, os.path.join(appPath, "modules", "model"))
+sys.path.insert(1, os.path.join(appPath, "modules", "util"))
+sys.path.insert(1, os.path.join(appPath, "config"))
+
 import wx
 import TextualUserInterface as TextualUserInterface
 from mainframeapp import MainWindow
@@ -16,10 +26,8 @@ from movement import Movement
 from consoleReader import ConsoleReader
 from movementRules import OneFieldPerMove
 import logging.config
-import os
 
 def main():
-    appPath = os.path.abspath(os.path.dirname(__file__))
     logging.config.fileConfig(os.path.join(appPath + '\\config\\log.config'))
     
     gameData = GameData()
