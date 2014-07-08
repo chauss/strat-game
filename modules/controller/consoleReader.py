@@ -3,10 +3,12 @@ Created on 04.04.2014
 
 @author: Chris
 '''
-from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING, \
-                              GAME_FINISHED
+import wx
+from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING
 from threading import Thread
 import logging
+from mainframeapp import MainWindow
+import gamemaster as gm
 import cmd
 
 logger = logging.getLogger('controller.consoleReader')
@@ -16,13 +18,14 @@ class ConsoleReader(Thread, cmd.Cmd):
     '''this class should be started in an extra thread.
     it waits for input from the command line
     '''
-    def __init__(self, gameData, playingField, tokenPlacing, movement):
+    def __init__(self):
         cmd.Cmd.__init__(self)
         Thread.__init__(self)
-        self.__gameData = gameData
-        self.__playingField = playingField
-        self.__tokenPlacing = tokenPlacing
-        self.__movement = movement
+        self.__game = None
+        self.__gameData = None
+        self.__playingField = None
+        self.__tokenPlacing = None
+        self.__movement = None
         self.__alive = True
         self.prompt = ">>> "
         logger.debug("Created a new instance of ConsoleReader")
@@ -37,6 +40,22 @@ class ConsoleReader(Thread, cmd.Cmd):
 ###############################################################################
 ##------> Command methods
         
+    # Start GUI
+    def do_startx(self, prm):
+        app = wx.App(False)
+        MainWindow(None, self.__gameData)
+        app.MainLoop()
+        
+    # Start a game
+    def do_start(self, prm):
+        '''starts the game, if not given any values the default values
+        are taken
+        '''
+        self.__game = gm.TwoManGame()
+        (self.__gameData, self.__playingField, self.__tokenPlacing, self.__movement) \
+        = self.__game.getGameDatas()
+        self.__gameData.nextGameState()
+        
     # PLACE
     def do_p(self, prm):
         self.do_place(prm)
@@ -44,13 +63,14 @@ class ConsoleReader(Thread, cmd.Cmd):
     def do_place(self, prm):
         '''checks the current gamestate and tries to place a token
         '''
+        if not (self.__gameData and self.__gameData.gameState() == TOKEN_PLACING):
+            self.printUsage()
+            return
+            
         logger.debug("Read the input: %s" % prm)
         myInput = prm.split()
-        gameState = self.__gameData.gameState()
-        if gameState == TOKEN_PLACING:
-            self._tryToPlaceToken(myInput)
-        else:
-            self.printUsage(gameState)
+        self._tryToPlaceToken(myInput)
+            
             
     def help_p(self):
         self.help_place()
@@ -69,12 +89,13 @@ class ConsoleReader(Thread, cmd.Cmd):
     def do_move(self, prm):
         '''checks the current gamestate and tries to move a token
         '''
-        gameState = self.__gameData.gameState()
+        if not (self.__gameData and self.__gameData.gameState() == TOKEN_MOVING):
+            self.printUsage()
+            return
+            
         myInput = prm.split()
-        if gameState == TOKEN_MOVING:
-            self._tryToMoveToken(myInput)
-        else:
-            self.printUsage(gameState)
+        self._tryToMoveToken(myInput)
+
             
     def help_m(self):
         self.help_move()
@@ -107,9 +128,9 @@ class ConsoleReader(Thread, cmd.Cmd):
 ###############################################################################
 ##------> Work methods
 
-    def printUsage(self, gameState):
+    def printUsage(self):
         tui.info("This command is currently not available.")
-        self.printAvailableCommands(gameState)
+        self.printAvailableCommands()
                 
     def _tryToPlaceToken(self, myInput):
         '''tries to place a token if myInput has legal values
@@ -129,11 +150,16 @@ class ConsoleReader(Thread, cmd.Cmd):
         else:
             tui.info("Illegal input")
             
-    def printAvailableCommands(self, gameState):
+    def printAvailableCommands(self):
         '''logs the available commands with the tui logger
         '''
+        gameState = None
+        if self.__gameData:
+            gameState = self.__gameData.gameState()
         tui.info("For more information about a command call \"help [command]\"")
-        if gameState == TOKEN_PLACING:
+        if not gameState:
+            tui.info("Available commands are: start")
+        elif gameState == TOKEN_PLACING:
             tui.info("Available commands are: place | p")
         elif gameState == TOKEN_MOVING:
             tui.info("Available commands are: move | m")

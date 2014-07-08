@@ -9,9 +9,10 @@ import logging
 
 logger = logging.getLogger('model.gdtp')
 
-TOKEN_PLACING = 0
-TOKEN_MOVING = 1
-GAME_FINISHED = 2
+PRE_GAME = 0
+TOKEN_PLACING = 1
+TOKEN_MOVING = 2
+GAME_FINISHED = 3
 
 class GameData(object):
     '''
@@ -29,7 +30,7 @@ class GameData(object):
         self.__areaLanesLimit = 0
         self.__activePlayer = None
         self.__playerCount = 2
-        self.__gameState = TOKEN_PLACING
+        self.__gameState = PRE_GAME
         self.__winner = None
         
     @property
