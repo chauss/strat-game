@@ -57,7 +57,7 @@ class ConsoleReader(Thread, cmd.Cmd):
         self.do_place(prm)
             
     def do_place(self, prm):
-        '''checks the current gamestate and tries to place a token
+        '''checks the current gamestate and tries to place a my_token
         '''
         if not (self.__gameData and self.__gameData.gameState() == TOKEN_PLACING):
             self.printUsage()
@@ -75,7 +75,7 @@ class ConsoleReader(Thread, cmd.Cmd):
         tui.info('Help for command: place | p')
         tui.info('Available in GameState: TokenPlacing')
         tui.info('Needs two parameters:')
-        tui.info('<xCoord> and <yCoord> of the field to place the token')
+        tui.info('<xCoord> and <yCoord> of the field to place the my_token')
         tui.info('Example: place 0 0')
             
     # MOVE
@@ -83,7 +83,7 @@ class ConsoleReader(Thread, cmd.Cmd):
         self.do_move(prm)
           
     def do_move(self, prm):
-        '''checks the current gamestate and tries to move a token
+        '''checks the current gamestate and tries to move a my_token
         '''
         if not (self.__gameData and self.__gameData.gameState() == TOKEN_MOVING):
             self.printUsage()
@@ -129,7 +129,7 @@ class ConsoleReader(Thread, cmd.Cmd):
         self.printAvailableCommands()
                 
     def _tryToPlaceToken(self, myInput):
-        '''tries to place a token if myInput has legal values
+        '''tries to place a my_token if myInput has legal values
         '''
         if len(myInput) == 2:
             logger.debug("Calling tryToPlaceToken in tokenPlacing with args (%s, %s)" % (myInput[0], myInput[1]))
@@ -138,7 +138,7 @@ class ConsoleReader(Thread, cmd.Cmd):
             tui.info("Illegal input")
     
     def _tryToMoveToken(self, myInput):
-        '''starts the movement of a token
+        '''starts the movement of a my_token
         '''
         if len(myInput) == 4:
             logger.debug("Calling tryToMoveToken in movement with args: (%s, %s, %s, %s)" % (myInput[0], myInput[1], myInput[2], myInput[3]))

@@ -4,7 +4,7 @@ Created on 30.03.2014
 @author: Chris
 '''
 import logging
-from token import Token
+from my_token import Token
 import ObserverPattern as ObserverPattern
 from fieldToString import TokenPlacingTopArea, TokenPlacingBottomArea, PlayerOnesTurn
 import utils
@@ -32,7 +32,7 @@ class TokenPlacing(ObserverPattern.Subject):
         
     def tryToPlaceToken(self, x, y):
         '''
-        controls the try to set a token on field x, y
+        controls the try to set a my_token on field x, y
         '''
         logger.debug("Start to place a Token...")
         try:
@@ -106,13 +106,13 @@ class TokenPlacing(ObserverPattern.Subject):
         
     def _checkFieldIsEmpty(self, x, y):
         '''
-        checks weather the field is empty or a token
+        checks weather the field is empty or a my_token
         is occupying it
         '''
         occToken = self.__playingField.getTokenOnField(x, y)
         if occToken:
             logger.debug("Check if field is empty failed: Field is occupied")
-            raise ValueError("There is already a token on field %d / %d" % (x, y))
+            raise ValueError("There is already a my_token on field %d / %d" % (x, y))
         logger.debug("Check if field is empty passed: Field is empty")
         
     def _changePlayer(self):

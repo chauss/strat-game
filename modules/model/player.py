@@ -32,7 +32,7 @@ class Player():
     
     def addTokenOnField(self, token):
         '''
-        adds a token to the players tokens on the field
+        adds a my_token to the players tokens on the field
         '''
         self.__tokensOnField.append(token)
         
@@ -45,7 +45,7 @@ class Player():
         
     def removeTokenOnField(self, token):
         '''
-        removes a token of the player from the list of its
+        removes a my_token of the player from the list of its
         tokens on the field
         '''
         if token in self.__tokensOnField:

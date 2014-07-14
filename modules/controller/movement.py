@@ -28,7 +28,7 @@ class Movement():
         
     def tryToMoveToken(self, oldX, oldY, newX, newY):
         '''
-        tries to move the token on field (oldX, oldY) to
+        tries to move the my_token on field (oldX, oldY) to
         (newX, newY). also calculates the "fight"
         '''
         try:
@@ -87,14 +87,14 @@ class Movement():
         
     def _getMovingToken(self, x, y):
         '''
-        returns the token on field x, y or raises an
-        ValueError if there is no token on that field
+        returns the my_token on field x, y or raises an
+        ValueError if there is no my_token on that field
         '''
         movingToken = self.__playingField.getTokenOnField(x, y)
         if not movingToken:
-            logger.debug("Tried to move with token on field (%d, %d) but field is empty" % (x, y))
-            raise ValueError("There is no token on field %d/%d to move" % (x, y))
-        logger.debug("Could find a token on field (%d, %d)" % (x, y))
+            logger.debug("Tried to move with my_token on field (%d, %d) but field is empty" % (x, y))
+            raise ValueError("There is no my_token on field %d/%d to move" % (x, y))
+        logger.debug("Could find a my_token on field (%d, %d)" % (x, y))
         return movingToken
     
     def _checkIfTokenBelongsToActivPlayer(self, token, player):
@@ -103,32 +103,32 @@ class Movement():
         raises an ValueError
         '''
         if player != token.getOwner():
-            logger.debug("Player %s tried to move with a token of player %s" % (player.getName(), token.getOwner().getName()))
-            raise ValueError("The token you want to move with does belong to %s" % token.getOwner().getName())
-        logger.debug("Check if the token to move with belongs to the active player passed: Belongs to %s" % player.getName())
+            logger.debug("Player %s tried to move with a my_token of player %s" % (player.getName(), token.getOwner().getName()))
+            raise ValueError("The my_token you want to move with does belong to %s" % token.getOwner().getName())
+        logger.debug("Check if the my_token to move with belongs to the active player passed: Belongs to %s" % player.getName())
         
     def _getTokenOnDestinationField(self, x, y):
         '''
-        returns the token on the destination field or
-        None if there is no token
+        returns the my_token on the destination field or
+        None if there is no my_token
         '''
         return self.__playingField.getTokenOnField(x, y)
     
     def _checkIfTokenBelongsNotToActivPlayer(self, token, player):
         '''
-        checks if the player wants to move on a token that belongs
+        checks if the player wants to move on a my_token that belongs
         to himself. if so raises an ValueError
         '''
         if player == token.getOwner():
-            logger.debug("Player %s tried to move on his own token" % player.getName())
-            raise ValueError("You can not move on your own token")
-        logger.debug("Check if the token at moving destination belongs to active player passed")
+            logger.debug("Player %s tried to move on his own my_token" % player.getName())
+            raise ValueError("You can not move on your own my_token")
+        logger.debug("Check if the my_token at moving destination belongs to active player passed")
     
     def _fightAndMove(self, movingToken, mx, my, destiToken, dx, dy):
         '''
-        returns the surviving token. it does care for the
-        losing token to be removed and checks if the player
-        who lost a token has lost the game
+        returns the surviving my_token. it does care for the
+        losing my_token to be removed and checks if the player
+        who lost a my_token has lost the game
         '''
         logger.debug("A fight broke out...")
         if destiToken.getRank() > movingToken.getRank():

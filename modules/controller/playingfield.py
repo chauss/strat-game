@@ -48,29 +48,29 @@ class PlayingField(ObserverPattern.Subject):
         
     def placeToken(self, token, x, y):
         '''
-        tries to place the token on the field (x/y)
+        tries to place the my_token on the field (x/y)
         if the PlayingField isn't build yet raises an PlayingFieldError
         if the field(x/y) is occupied raises an IllegalMoveError
         '''
         self.__playingField[x][y].moveTo(token)
-        logger.debug("Placed token(id=%d) on PlayingField (%d/%d)" % (id(token), x, y))
+        logger.debug("Placed my_token(id=%d) on PlayingField (%d/%d)" % (id(token), x, y))
         self.notify()
         
     def getTokenOnField(self, x, y):
         '''
-        returns the token that occupies field x/y
-        or None if there is no token on the field
+        returns the my_token that occupies field x/y
+        or None if there is no my_token on the field
         '''
         return self.__playingField[x][y].getOccupyingToken()
         
     def leaveField(self, x, y):
         '''
-        deletes the token that sits on field x, y
+        deletes the my_token that sits on field x, y
         raises a PlayingFieldError if the field wasn't
         occupied
         '''
         if not self.__playingField[x][y].getOccupyingToken():
-            logger.debug("Tried to leave field(%d/%d) but there is no token on it" % (x, y))
+            logger.debug("Tried to leave field(%d/%d) but there is no my_token on it" % (x, y))
             raise PlayingFieldError("Can not leave an empty field")
         self.__playingField[x][y].leave()
         

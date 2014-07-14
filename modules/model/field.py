@@ -21,13 +21,13 @@ class Field():
         
     def getOccupyingToken(self):
         '''
-        returns the occupying token or None if there is no token
+        returns the occupying my_token or None if there is no my_token
         '''
         return self.__token
     
     def moveTo(self, token):
         '''
-        if the field is unoccupied, the field save the coming token
+        if the field is unoccupied, the field save the coming my_token
         if the field is already occupied an IllegalMoveError is raised
         '''
         if self.__token == None:
@@ -39,8 +39,8 @@ class Field():
     
     def leave(self):
         '''
-        this will del the token who occupied the field
-        if no token occupied the field nothing happens
+        this will del the my_token who occupied the field
+        if no my_token occupied the field nothing happens
         '''
         logger.debug("Leaving field(id=%d)" % id(self))
         self.__token = None

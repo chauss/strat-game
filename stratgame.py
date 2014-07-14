@@ -8,7 +8,6 @@ import sys, os
 appPath = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(1, os.path.join(appPath, "modules"))
 sys.path.insert(1, os.path.join(appPath, "modules", "aview"))
-sys.path.insert(1, os.path.join(appPath, "modules", "aview", "dialogs"))
 sys.path.insert(1, os.path.join(appPath, "modules", "controller"))
 sys.path.insert(1, os.path.join(appPath, "modules", "model"))
 sys.path.insert(1, os.path.join(appPath, "modules", "util"))

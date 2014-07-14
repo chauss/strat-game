@@ -3,14 +3,14 @@ Created on 01.04.2014
 
 @author: Chris
 '''
-from token import MAX_RANK
+from my_token import MAX_RANK
 import logging
 
 logger = logging.getLogger('controller.tokensetBuilder')
 
 def buildDefaultTokenSet(gameData):
     '''
-    builds a list of token ranks that is used for
+    builds a list of my_token ranks that is used for
     the placing of the tokens in the beginning
     '''
     tokenSet = []
