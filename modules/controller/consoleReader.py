@@ -3,11 +3,9 @@ Created on 04.04.2014
 
 @author: Chris
 '''
-import wx
 from gameDataTwoPlayer import TOKEN_PLACING, TOKEN_MOVING
 from threading import Thread
 import logging
-from mainframeapp import MainWindow
 import gamemaster as gm
 import cmd
 
@@ -42,10 +40,8 @@ class ConsoleReader(Thread, cmd.Cmd):
         
     # Start GUI
     def do_startx(self, prm):
-        app = wx.App(False)
-        MainWindow(None, self.__gameData)
-        app.MainLoop()
-        
+        pass
+    
     # Start a game
     def do_start(self, prm):
         '''starts the game, if not given any values the default values
