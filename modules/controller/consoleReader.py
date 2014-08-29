@@ -8,6 +8,8 @@ from threading import Thread
 import logging
 import gamemaster as gm
 import cmd
+from mainframeapp import MainWindow
+import wx
 
 logger = logging.getLogger('controller.consoleReader')
 tui = logging.getLogger('tui.consoleReader')
@@ -25,6 +27,7 @@ class ConsoleReader(Thread, cmd.Cmd):
         self.__tokenPlacing = None
         self.__movement = None
         self.__alive = True
+        self.app = wx.App(False)
         self.prompt = ">>> "
         logger.debug("Created a new instance of ConsoleReader")
         
@@ -40,7 +43,10 @@ class ConsoleReader(Thread, cmd.Cmd):
         
     # Start GUI
     def do_startx(self, prm):
-        pass
+        '''starts the gui'''
+        frame = MainWindow(None, self.__gameData)
+        frame.Show()
+        self.app.MainLoop()
     
     # Start a game
     def do_start(self, prm):
